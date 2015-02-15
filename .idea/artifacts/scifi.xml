@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="scifi">
+    <output-path>$PROJECT_DIR$/out/artifacts/scifi</output-path>
+    <root id="archive" name="scifi.zip">
+      <element id="directory" name="client">
+        <element id="artifact" artifact-name="client:jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/client.properties" />
+        <element id="file-copy" path="$PROJECT_DIR$/client.bat" />
+        <element id="file-copy" path="$PROJECT_DIR$/version.properties" />
+      </element>
+      <element id="directory" name="server">
+        <element id="artifact" artifact-name="server:jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/server.properties" />
+        <element id="file-copy" path="$PROJECT_DIR$/data.xml" />
+        <element id="file-copy" path="$PROJECT_DIR$/server.bat" />
+        <element id="file-copy" path="$PROJECT_DIR$/version.properties" />
+      </element>
+    </root>
+  </artifact>
+</component>

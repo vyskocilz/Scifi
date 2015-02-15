@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact name="client:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/client_jar</output-path>
+    <root id="root">
+      <element id="library" level="project" name="JGoodies Forms" />
+      <element id="library" level="project" name="Theme" />
+      <element id="archive" name="client.jar">
+        <element id="module-output" name="client" />
+        <element id="module-output" name="common" />
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/client/src/META-INF/MANIFEST.MF" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

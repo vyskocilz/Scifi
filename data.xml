@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_26" class="java.beans.XMLDecoder"> 
+ <object class="main.SaveData"> 
+  <void property="motory"> 
+   <object class="java.util.ArrayList"> 
+    <void method="add"> 
+     <object class="save.SaveSpotrebic"> 
+      <void property="nazev"> 
+       <string>Motor</string> 
+      </void> 
+      <void property="priorita"> 
+       <int>0</int> 
+      </void> 
+      <void property="urovne"> 
+       <void method="add"> 
+        <object class="save.SaveUrovne"> 
+         <void property="nazev"> 
+          <string>0</string> 
+         </void> 
+         <void property="spotreba"> 
+          <int>0</int> 
+         </void> 
+        </object> 
+       </void> 
+      </void> 
+     </object> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="scenary"> 
+   <object class="java.util.ArrayList"> 
+    <void method="add"> 
+     <object class="save.SaveSpotrebic"> 
+      <void property="nazev"> 
+       <string>Scaner</string> 
+      </void> 
+      <void property="priorita"> 
+       <int>0</int> 
+      </void> 
+      <void property="urovne"> 
+       <void method="add"> 
+        <object class="save.SaveUrovne"> 
+         <void property="nazev"> 
+          <string>0</string> 
+         </void> 
+         <void property="spotreba"> 
+          <int>0</int> 
+         </void> 
+        </object> 
+       </void> 
+      </void> 
+     </object> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="stity"> 
+   <object class="java.util.ArrayList"> 
+    <void method="add"> 
+     <object class="save.SaveSpotrebic"> 
+      <void property="nazev"> 
+       <string>Stitek</string> 
+      </void> 
+      <void property="ovladatelnost"> 
+       <boolean>true</boolean> 
+      </void> 
+      <void property="priorita"> 
+       <int>0</int> 
+      </void> 
+      <void property="urovne"> 
+       <void method="add"> 
+        <object class="save.SaveUrovne"> 
+         <void property="nazev"> 
+          <string>0</string> 
+         </void> 
+         <void property="spotreba"> 
+          <int>0</int> 
+         </void> 
+        </object> 
+       </void> 
+      </void> 
+      <void property="viditelnost"> 
+       <boolean>true</boolean> 
+      </void> 
+      <void property="zapnut"> 
+       <boolean>true</boolean> 
+      </void> 
+     </object> 
+    </void> 
+    <void method="add"> 
+     <object class="save.SaveSpotrebic"> 
+      <void property="nazev"> 
+       <string>Stitek</string> 
+      </void> 
+      <void property="priorita"> 
+       <int>0</int> 
+      </void> 
+      <void property="urovne"> 
+       <void method="add"> 
+        <object class="save.SaveUrovne"> 
+         <void property="nazev"> 
+          <string>0</string> 
+         </void> 
+         <void property="spotreba"> 
+          <int>0</int> 
+         </void> 
+        </object> 
+       </void> 
+      </void> 
+      <void property="viditelnost"> 
+       <boolean>true</boolean> 
+      </void> 
+     </object> 
+    </void> 
+    <void method="add"> 
+     <object class="save.SaveSpotrebic"> 
+      <void property="nazev"> 
+       <string>Stitek</string> 
+      </void> 
+      <void property="ovladatelnost"> 
+       <boolean>true</boolean> 
+      </void> 
+      <void property="priorita"> 
+       <int>0</int> 
+      </void> 
+      <void property="urovne"> 
+       <void method="add"> 
+        <object class="save.SaveUrovne"> 
+         <void property="nazev"> 
+          <string>0</string> 
+         </void> 
+         <void property="spotreba"> 
+          <int>0</int> 
+         </void> 
+        </object> 
+       </void> 
+      </void> 
+     </object> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="zbrane"> 
+   <object class="java.util.ArrayList"> 
+    <void method="add"> 
+     <object class="save.SaveSpotrebic"> 
+      <void property="nazev"> 
+       <string>Zbran</string> 
+      </void> 
+      <void property="priorita"> 
+       <int>0</int> 
+      </void> 
+      <void property="urovne"> 
+       <void method="add"> 
+        <object class="save.SaveUrovne"> 
+         <void property="nazev"> 
+          <string>0</string> 
+         </void> 
+         <void property="spotreba"> 
+          <int>0</int> 
+         </void> 
+        </object> 
+       </void> 
+      </void> 
+     </object> 
+    </void> 
+    <void method="add"> 
+     <object class="save.SaveSpotrebic"> 
+      <void property="nazev"> 
+       <string>Zbran</string> 
+      </void> 
+      <void property="priorita"> 
+       <int>0</int> 
+      </void> 
+      <void property="urovne"> 
+       <void method="add"> 
+        <object class="save.SaveUrovne"> 
+         <void property="nazev"> 
+          <string>0</string> 
+         </void> 
+         <void property="spotreba"> 
+          <int>0</int> 
+         </void> 
+        </object> 
+       </void> 
+      </void> 
+      <void property="viditelnost"> 
+       <boolean>true</boolean> 
+      </void> 
+     </object> 
+    </void> 
+    <void method="add"> 
+     <object class="save.SaveSpotrebic"> 
+      <void property="nazev"> 
+       <string>Zbran</string> 
+      </void> 
+      <void property="priorita"> 
+       <int>0</int> 
+      </void> 
+      <void property="urovne"> 
+       <void method="add"> 
+        <object class="save.SaveUrovne"> 
+         <void property="nazev"> 
+          <string>0</string> 
+         </void> 
+         <void property="spotreba"> 
+          <int>0</int> 
+         </void> 
+        </object> 
+       </void> 
+      </void> 
+      <void property="zapnut"> 
+       <boolean>true</boolean> 
+      </void> 
+     </object> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="zdroje"> 
+   <object class="java.util.ArrayList"> 
+    <void method="add"> 
+     <object class="zdroje.Zdroj"> 
+      <void property="maxVykon"> 
+       <int>100</int> 
+      </void> 
+      <void property="nazev"> 
+       <string>Nový Zdroj</string> 
+      </void> 
+      <void property="sysName"> 
+       <string>Zdroj1</string> 
+      </void> 
+     </object> 
+    </void> 
+   </object> 
+  </void> 
+ </object> 
+</java> 
