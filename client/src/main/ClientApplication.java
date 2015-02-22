@@ -212,7 +212,6 @@ public class ClientApplication extends JFrame {
             public void windowClosing(WindowEvent e) {
                 thisWindowClosing(e);
             }
-
             @Override
             public void windowOpened(WindowEvent e) {
                 thisWindowOpened(e);
@@ -259,7 +258,6 @@ public class ClientApplication extends JFrame {
             }
             mainPanel.addTab("M\u016fstek", panelMustek);
 
-
             //======== panelStrojovna ========
             {
                 panelStrojovna.setBorder(null);
@@ -297,8 +295,8 @@ public class ClientApplication extends JFrame {
                         {
                             spotrebaPanel.setBorder(null);
                             spotrebaPanel.setLayout(new FormLayout(
-                                    "6*(default, $lcgap), default",
-                                    "fill:default, 5*($lgap, default)"));
+                                "6*(default, $lcgap), default",
+                                "fill:default, 5*($lgap, default)"));
 
                             //---- label6 ----
                             label6.setText("V\u00fdkon");
@@ -347,6 +345,7 @@ public class ClientApplication extends JFrame {
                             motoryZvisit.setText("+");
                             motoryZvisit.setEnabled(false);
                             motoryZvisit.addActionListener(new ActionListener() {
+                                @Override
                                 public void actionPerformed(ActionEvent e) {
                                     motoryZvisitActionPerformed(e);
                                 }
@@ -357,6 +356,7 @@ public class ClientApplication extends JFrame {
                             motorySnizit.setText("-");
                             motorySnizit.setEnabled(false);
                             motorySnizit.addActionListener(new ActionListener() {
+                                @Override
                                 public void actionPerformed(ActionEvent e) {
                                     motorySnizitActionPerformed(e);
                                 }
@@ -382,6 +382,7 @@ public class ClientApplication extends JFrame {
                             scaneryZvisit.setText("+");
                             scaneryZvisit.setEnabled(false);
                             scaneryZvisit.addActionListener(new ActionListener() {
+                                @Override
                                 public void actionPerformed(ActionEvent e) {
                                     scaneryZvisitActionPerformed(e);
                                 }
@@ -392,6 +393,7 @@ public class ClientApplication extends JFrame {
                             scanerySnizit.setText("-");
                             scanerySnizit.setEnabled(false);
                             scanerySnizit.addActionListener(new ActionListener() {
+                                @Override
                                 public void actionPerformed(ActionEvent e) {
                                     scanerySnizitActionPerformed(e);
                                 }
@@ -417,6 +419,7 @@ public class ClientApplication extends JFrame {
                             zbraneZvisit.setText("+");
                             zbraneZvisit.setEnabled(false);
                             zbraneZvisit.addActionListener(new ActionListener() {
+                                @Override
                                 public void actionPerformed(ActionEvent e) {
                                     zbraneZvisitActionPerformed(e);
                                 }
@@ -427,6 +430,7 @@ public class ClientApplication extends JFrame {
                             zbraneSnizit.setText("-");
                             zbraneSnizit.setEnabled(false);
                             zbraneSnizit.addActionListener(new ActionListener() {
+                                @Override
                                 public void actionPerformed(ActionEvent e) {
                                     zbraneSnizitActionPerformed(e);
                                 }
@@ -452,6 +456,7 @@ public class ClientApplication extends JFrame {
                             stityZvisit.setText("+");
                             stityZvisit.setEnabled(false);
                             stityZvisit.addActionListener(new ActionListener() {
+                                @Override
                                 public void actionPerformed(ActionEvent e) {
                                     stityZvisitActionPerformed(e);
                                 }
@@ -462,6 +467,7 @@ public class ClientApplication extends JFrame {
                             stitySnizit.setText("-");
                             stitySnizit.setEnabled(false);
                             stitySnizit.addActionListener(new ActionListener() {
+                                @Override
                                 public void actionPerformed(ActionEvent e) {
                                     stitySnizitActionPerformed(e);
                                 }
@@ -481,8 +487,8 @@ public class ClientApplication extends JFrame {
                         {
                             spotrebaPanel2.setBorder(null);
                             spotrebaPanel2.setLayout(new FormLayout(
-                                    "default, $lcgap, 79dlu, $lcgap, 75dlu",
-                                    "2*($lgap, default)"));
+                                "default, $lcgap, 79dlu, $lcgap, 75dlu",
+                                "2*($lgap, default)"));
 
                             //---- label2 ----
                             label2.setText("Z\u00e1soba");
@@ -520,7 +526,6 @@ public class ClientApplication extends JFrame {
                 panelStrojovna.add(panelSpotrebaPravo, BorderLayout.EAST);
             }
             mainPanel.addTab("Strojovna", panelStrojovna);
-
         }
         contentPane.add(mainPanel, BorderLayout.CENTER);
 
@@ -547,6 +552,7 @@ public class ClientApplication extends JFrame {
                     //---- chatButton ----
                     chatButton.setText("Odeslat");
                     chatButton.addActionListener(new ActionListener() {
+                        @Override
                         public void actionPerformed(ActionEvent e) {
                             chatButtonActionPerformed(e);
                         }
@@ -564,7 +570,7 @@ public class ClientApplication extends JFrame {
         //---- bindings ----
         bindingGroup = new BindingGroup();
         bindingGroup.addBinding(SwingBindings.createJListBinding(UpdateStrategy.READ_ONCE,
-                chatListModel, list1));
+            chatListModel, list1));
         bindingGroup.bind();
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }

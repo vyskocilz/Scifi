@@ -16,8 +16,8 @@ public class Chat {
 
     public static void writeText(String client, String text) {
         String msg = String.format("%1$15s %2$s", client + ">", text);
-        if (chatListModel.size() > 100) {
-            chatListModel.remove(0);
+        while (chatListModel.size() > 100) {
+            chatListModel.remove(100);
         }
         chatListModel.add(0, msg);
         ServerUtils.sendChatMessage(msg);

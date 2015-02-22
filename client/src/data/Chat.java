@@ -17,8 +17,8 @@ public class Chat {
     }
 
     public static void writeText(String text) {
-        if (chatListModel.size() > 100) {
-            chatListModel.remove(0);
+        while (chatListModel.size() > 100) {
+            chatListModel.remove(100);
         }
         chatListModel.add(0, text);
     }
