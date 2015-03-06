@@ -8,13 +8,16 @@ import log.Log;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Client {
     private static int PORT = 1234;     // server details
     private static String HOST = "localhost";
+    private static String NAME = null;
     private Socket sock;
     private ObjectOutputStream out;
     private static boolean connected = false;
@@ -23,7 +26,16 @@ public class Client {
 
     public Client() {
         PORT = Integer.parseInt(ClientProperty.getProperty(ClientProperty.SERVER_PORT));
-        HOST = ClientProperty.getProperty(ClientProperty.SERVER_ADDR);
+        NAME = ClientProperty.getProperty(ClientProperty.SERVER_PC_NAME);
+        if (NAME != null && !NAME.isEmpty()) {
+            try {
+                HOST = InetAddress.getByName(NAME).getHostAddress();
+            } catch (UnknownHostException e) {
+                HOST = ClientProperty.getProperty(ClientProperty.SERVER_ADDR);
+            }
+        } else {
+            HOST = ClientProperty.getProperty(ClientProperty.SERVER_ADDR);
+        }
     }
 
     public void start() {
@@ -57,7 +69,7 @@ public class Client {
         try {
             sock = new Socket(HOST, PORT);
             setConnected(true);
-            Log.log("Spojeni se server navazano");
+            Log.log("Spojeni se server navazano [address=" + HOST + ":" + PORT);
             out = new ObjectOutputStream(sock.getOutputStream());
             ObjectInputStream ino = new ObjectInputStream(sock.getInputStream());
             chatWatcher = new ChatWatcher(this, ino);

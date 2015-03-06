@@ -17,6 +17,7 @@ public class ClientProperty {
     private Properties properties = new Properties();
     public static final String PROPERTY_FILE = "client.properties";
     public static final String SERVER_ADDR = "server_ip";
+    public static final String SERVER_PC_NAME = "server_pc_name";
     public static final String SERVER_PORT = "server_port";
     public static final String CLIENT_MUSTEK = "client_mustek";
     public static final String CLIENT_NAME = "client_name";
