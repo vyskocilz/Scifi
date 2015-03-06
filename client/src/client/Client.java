@@ -17,7 +17,6 @@ import java.util.TimerTask;
 public class Client {
     private static int PORT = 1234;     // server details
     private static String HOST = "localhost";
-    private static String NAME = null;
     private Socket sock;
     private ObjectOutputStream out;
     private static boolean connected = false;
@@ -26,7 +25,7 @@ public class Client {
 
     public Client() {
         PORT = Integer.parseInt(ClientProperty.getProperty(ClientProperty.SERVER_PORT));
-        NAME = ClientProperty.getProperty(ClientProperty.SERVER_PC_NAME);
+        String NAME = ClientProperty.getProperty(ClientProperty.SERVER_PC_NAME);
         if (NAME != null && !NAME.isEmpty()) {
             try {
                 HOST = InetAddress.getByName(NAME).getHostAddress();
