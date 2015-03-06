@@ -6,9 +6,12 @@ package main;
 
 import client.ClientUtils;
 import com.jgoodies.forms.factories.CC;
+import com.jgoodies.forms.factories.DefaultComponentFactory;
 import com.jgoodies.forms.layout.FormLayout;
+import component.MapaJPanel;
 import converter.LongToTimeStringConverter;
 import data.*;
+import data.mapa.MapData;
 import ini.ClientProperty;
 import log.Log;
 import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
@@ -20,10 +23,7 @@ import org.jdesktop.swingx.VerticalLayout;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 
 /**
  * @author Zdenek Vyskocil
@@ -31,6 +31,7 @@ import java.awt.event.WindowEvent;
 public class ClientApplication extends JFrame {
 
     public static ClientApplication dialog;
+    public MapController mapController = new MapController();
 
     public static void main(String[] args) {
         Log.init();
@@ -53,6 +54,7 @@ public class ClientApplication extends JFrame {
 
         panelMustek.setVisible(clientTypes.contains(ClientType.MUSTEK));
         panelStrojovna.setVisible(clientTypes.contains(ClientType.STROJOVNA));
+        panelStrojovna.setVisible(clientTypes.contains(ClientType.STROJOVNA));
 
         mainPanel.repaint();
     }
@@ -63,6 +65,11 @@ public class ClientApplication extends JFrame {
         palivoCasCelkem.setText(toTimeStringConverter.convertForward(data.getPalivoTime()));
     }
 
+    public void updateMap(MapData mapData) {
+        mapController.setMapaData(mapData);
+        mapaJPanel1.setVisible(false);
+        mapaJPanel1.setVisible(true);
+    }
 
     private static LongToTimeStringConverter toTimeStringConverter = new LongToTimeStringConverter();
 
@@ -147,9 +154,42 @@ public class ClientApplication extends JFrame {
         return chatPanel;
     }
 
+    private void mapaJPanel1MousePressed(MouseEvent e) {
+        mapController.onClick(e.getX(), e.getY());
+    }
+
+    private void buttonShootSet1ActionPerformed(ActionEvent e) {
+        mapController.setWaitForShootClick(1);
+    }
+
+    private void buttonShipShootDelete1ActionPerformed(ActionEvent e) {
+        mapController.delete(1);
+    }
+
+    private void buttonShootSet2ActionPerformed(ActionEvent e) {
+        mapController.setWaitForShootClick(2);
+    }
+
+    private void buttonShipShootDelete2ActionPerformed(ActionEvent e) {
+        mapController.delete(2);
+    }
+
+    private void buttonShootSet3ActionPerformed(ActionEvent e) {
+        mapController.setWaitForShootClick(3);
+    }
+
+    private void buttonShipShootDelete3ActionPerformed(ActionEvent e) {
+        mapController.delete(3);
+    }
+
+    private void buttonShipShootDeleteAllActionPerformed(ActionEvent e) {
+        mapController.delete(0);
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner non-commercial license
+        DefaultComponentFactory compFactory = DefaultComponentFactory.getInstance();
         mainPanel = new JTabbedPane();
         panelMustek = new JPanel();
         panelMotory = new JPanel();
@@ -195,6 +235,20 @@ public class ClientApplication extends JFrame {
         palivoCasCelkem = new JTextField();
         palivoAktualniSpotreba = new JTextField();
         label9 = new JLabel();
+        mapsMainPanel = new JPanel();
+        mapaPanel = new JPanel();
+        mapaJPanel1 = new MapaJPanel();
+        panel3 = new JPanel();
+        label19 = compFactory.createLabel("Phaser (3)");
+        buttonShootSet1 = new JButton();
+        buttonShipShootDelete1 = new JButton();
+        label20 = compFactory.createLabel("Impulzni");
+        buttonShootSet2 = new JButton();
+        buttonShipShootDelete2 = new JButton();
+        label21 = compFactory.createLabel("Energeticke");
+        buttonShootSet3 = new JButton();
+        buttonShipShootDelete3 = new JButton();
+        buttonShipShootDeleteAll = new JButton();
         chatPanel = new JPanel();
         panel2 = new JPanel();
         scrollPane2 = new JScrollPane();
@@ -212,6 +266,7 @@ public class ClientApplication extends JFrame {
             public void windowClosing(WindowEvent e) {
                 thisWindowClosing(e);
             }
+
             @Override
             public void windowOpened(WindowEvent e) {
                 thisWindowOpened(e);
@@ -295,8 +350,8 @@ public class ClientApplication extends JFrame {
                         {
                             spotrebaPanel.setBorder(null);
                             spotrebaPanel.setLayout(new FormLayout(
-                                "6*(default, $lcgap), default",
-                                "fill:default, 5*($lgap, default)"));
+                                    "6*(default, $lcgap), default",
+                                    "fill:default, 5*($lgap, default)"));
 
                             //---- label6 ----
                             label6.setText("V\u00fdkon");
@@ -487,8 +542,8 @@ public class ClientApplication extends JFrame {
                         {
                             spotrebaPanel2.setBorder(null);
                             spotrebaPanel2.setLayout(new FormLayout(
-                                "default, $lcgap, 79dlu, $lcgap, 75dlu",
-                                "2*($lgap, default)"));
+                                    "default, $lcgap, 79dlu, $lcgap, 75dlu",
+                                    "2*($lgap, default)"));
 
                             //---- label2 ----
                             label2.setText("Z\u00e1soba");
@@ -526,6 +581,120 @@ public class ClientApplication extends JFrame {
                 panelStrojovna.add(panelSpotrebaPravo, BorderLayout.EAST);
             }
             mainPanel.addTab("Strojovna", panelStrojovna);
+
+            //======== mapsMainPanel ========
+            {
+                mapsMainPanel.setLayout(new BorderLayout());
+
+                //======== mapaPanel ========
+                {
+                    mapaPanel.setBorder(new TitledBorder("Mapa"));
+                    mapaPanel.setLayout(new BorderLayout());
+
+                    //---- mapaJPanel1 ----
+                    mapaJPanel1.setMapData(mapController.getMapaData());
+                    mapaJPanel1.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mousePressed(MouseEvent e) {
+                            mapaJPanel1MousePressed(e);
+                        }
+                    });
+                    mapaPanel.add(mapaJPanel1, BorderLayout.CENTER);
+                }
+                mapsMainPanel.add(mapaPanel, BorderLayout.CENTER);
+
+                //======== panel3 ========
+                {
+                    panel3.setBorder(new TitledBorder("Zbran\u011b"));
+                    panel3.setLayout(new FormLayout(
+                            "2*(default, $lcgap), default",
+                            "5*(default, $lgap), default"));
+
+                    //---- label19 ----
+                    label19.setText("Phaser (3)");
+                    panel3.add(label19, CC.xy(1, 1));
+
+                    //---- buttonShootSet1 ----
+                    buttonShootSet1.setText("Vyst\u0159elit");
+                    buttonShootSet1.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            buttonShootSet1ActionPerformed(e);
+                        }
+                    });
+                    panel3.add(buttonShootSet1, CC.xy(3, 1));
+
+                    //---- buttonShipShootDelete1 ----
+                    buttonShipShootDelete1.setText("Vymazat");
+                    buttonShipShootDelete1.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            buttonShipShootDelete1ActionPerformed(e);
+                        }
+                    });
+                    panel3.add(buttonShipShootDelete1, CC.xy(5, 1));
+
+                    //---- label20 ----
+                    label20.setText("Impulzni (1)");
+                    panel3.add(label20, CC.xy(1, 3));
+
+                    //---- buttonShootSet2 ----
+                    buttonShootSet2.setText("Vyst\u0159elit");
+                    buttonShootSet2.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            buttonShootSet2ActionPerformed(e);
+                        }
+                    });
+                    panel3.add(buttonShootSet2, CC.xy(3, 3));
+
+                    //---- buttonShipShootDelete2 ----
+                    buttonShipShootDelete2.setText("Vymazat");
+                    buttonShipShootDelete2.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            buttonShipShootDelete2ActionPerformed(e);
+                        }
+                    });
+                    panel3.add(buttonShipShootDelete2, CC.xy(5, 3));
+
+                    //---- label21 ----
+                    label21.setText("Energeticke (1)");
+                    panel3.add(label21, CC.xy(1, 5));
+
+                    //---- buttonShootSet3 ----
+                    buttonShootSet3.setText("Vyst\u0159elit");
+                    buttonShootSet3.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            buttonShootSet3ActionPerformed(e);
+                        }
+                    });
+                    panel3.add(buttonShootSet3, CC.xy(3, 5));
+
+                    //---- buttonShipShootDelete3 ----
+                    buttonShipShootDelete3.setText("Vymazat");
+                    buttonShipShootDelete3.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            buttonShipShootDelete3ActionPerformed(e);
+                        }
+                    });
+                    panel3.add(buttonShipShootDelete3, CC.xy(5, 5));
+
+                    //---- buttonShipShootDeleteAll ----
+                    buttonShipShootDeleteAll.setText("Vymazat v\u0161echny");
+                    buttonShipShootDeleteAll.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            buttonShipShootDeleteAllActionPerformed(e);
+                        }
+                    });
+                    panel3.add(buttonShipShootDeleteAll, CC.xywh(3, 7, 3, 1));
+                }
+                mapsMainPanel.add(panel3, BorderLayout.EAST);
+            }
+            mainPanel.addTab("Mapa", mapsMainPanel);
         }
         contentPane.add(mainPanel, BorderLayout.CENTER);
 
@@ -570,7 +739,7 @@ public class ClientApplication extends JFrame {
         //---- bindings ----
         bindingGroup = new BindingGroup();
         bindingGroup.addBinding(SwingBindings.createJListBinding(UpdateStrategy.READ_ONCE,
-            chatListModel, list1));
+                chatListModel, list1));
         bindingGroup.bind();
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -622,6 +791,20 @@ public class ClientApplication extends JFrame {
     private JTextField palivoCasCelkem;
     private JTextField palivoAktualniSpotreba;
     private JLabel label9;
+    private JPanel mapsMainPanel;
+    private JPanel mapaPanel;
+    private MapaJPanel mapaJPanel1;
+    private JPanel panel3;
+    private JLabel label19;
+    private JButton buttonShootSet1;
+    private JButton buttonShipShootDelete1;
+    private JLabel label20;
+    private JButton buttonShootSet2;
+    private JButton buttonShipShootDelete2;
+    private JLabel label21;
+    private JButton buttonShootSet3;
+    private JButton buttonShipShootDelete3;
+    private JButton buttonShipShootDeleteAll;
     private JPanel chatPanel;
     private JPanel panel2;
     private JScrollPane scrollPane2;

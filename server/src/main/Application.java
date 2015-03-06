@@ -8,15 +8,18 @@ import chat.Chat;
 import com.jgoodies.forms.factories.CC;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import com.jgoodies.forms.layout.FormLayout;
+import component.MapaJPanel;
 import converter.LongToTimeStringConverter;
 import converter.ZdrojeConverter;
 import data.ClientType;
 import ini.Theme;
+import mapa.MapController;
 import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
 import org.jdesktop.beansbinding.*;
 import org.jdesktop.observablecollections.ObservableList;
 import org.jdesktop.swingbinding.JTableBinding;
 import org.jdesktop.swingbinding.SwingBindings;
+import org.jdesktop.swingx.VerticalLayout;
 import server.ServerUtils;
 import urovne.UrovenDialog;
 import validator.PositiveValidator;
@@ -25,10 +28,7 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileFilter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.io.File;
 
 import static javax.swing.JOptionPane.YES_OPTION;
@@ -39,13 +39,17 @@ import static javax.swing.JOptionPane.YES_OPTION;
 public class Application extends JFrame {
 
     public static ClientData clientData = new ClientData();
+    public static MapController mapController = new MapController();
+    public static Application dialog;
+
     final JFileChooser fc;
 
 
     public static void main(String[] args) {
         Theme.init();
         clientData.init();
-        Application dialog = new Application();
+        mapController.setMapaData(clientData.getMapa());
+        dialog = new Application();
         dialog.setVisible(true);
     }
 
@@ -281,6 +285,104 @@ public class Application extends JFrame {
         clientData.getZbrane().removeElement(zbraneTable.getSelectedRow());
     }
 
+    private void buttonShipSet1ActionPerformed(ActionEvent e) {
+        mapController.setWaitForShipClick(1);
+    }
+
+    private void buttonShipSet2ActionPerformed(ActionEvent e) {
+        mapController.setWaitForShipClick(2);
+    }
+
+    private void buttonShipSet3ActionPerformed(ActionEvent e) {
+        mapController.setWaitForShipClick(3);
+    }
+
+    private void buttonShipDelete1ActionPerformed(ActionEvent e) {
+        mapController.deleteShip(1);
+        refreshMaps();
+    }
+
+    private void buttonShipDelete2ActionPerformed(ActionEvent e) {
+        mapController.deleteShip(2);
+        refreshMaps();
+    }
+
+    private void buttonShipDelete3ActionPerformed(ActionEvent e) {
+        mapController.deleteShip(3);
+        refreshMaps();
+    }
+
+    private void mapaJPanel1MouseClicked(MouseEvent e) {
+        mapController.onClick(e.getX(), e.getY());
+        refreshMaps();
+    }
+
+    public void refreshMaps() {
+        mapaJPanel1.setVisible(false);
+        mapaJPanel1.setVisible(true);
+        mapController.sendMapsData();
+    }
+
+    private void buttonShootSet1ActionPerformed(ActionEvent e) {
+        mapController.setWaitForShootClick(1);
+        refreshMaps();
+    }
+
+    private void buttonShootSet2ActionPerformed(ActionEvent e) {
+        mapController.setWaitForShootClick(2);
+        refreshMaps();
+    }
+
+    private void buttonShootSet3ActionPerformed(ActionEvent e) {
+        mapController.setWaitForShootClick(3);
+        refreshMaps();
+    }
+
+    private void buttonShipShootDelete1ActionPerformed(ActionEvent e) {
+        mapController.deleteShoot(1);
+        refreshMaps();
+    }
+
+    private void buttonShipShootDelete2ActionPerformed(ActionEvent e) {
+        mapController.deleteShoot(2);
+        refreshMaps();
+    }
+
+    private void buttonShipShootDelete3ActionPerformed(ActionEvent e) {
+        mapController.deleteShoot(3);
+        refreshMaps();
+    }
+
+    private void buttonShipShootDeleteAllActionPerformed(ActionEvent e) {
+        mapController.deleteShoot(0);
+        refreshMaps();
+    }
+
+    private void checkBoxShip1ItemStateChanged(ItemEvent e) {
+        mapController.setShipColor(1, e.getStateChange() == ItemEvent.SELECTED);
+        refreshMaps();
+    }
+
+    private void checkBoxShip2ItemStateChanged(ItemEvent e) {
+        mapController.setShipColor(2, e.getStateChange() == ItemEvent.SELECTED);
+        refreshMaps();
+    }
+
+    private void checkBoxShip3ItemStateChanged(ItemEvent e) {
+        mapController.setShipColor(3, e.getStateChange() == ItemEvent.SELECTED);
+        refreshMaps();
+    }
+
+    private void mapaJPanel1MousePressed(MouseEvent e) {
+        mapController.onClick(e.getX(), e.getY());
+        refreshMaps();
+    }
+
+    private void mapaJPanel1MouseReleased(MouseEvent e) {
+        mapController.onClick(e.getX(), e.getY());
+        refreshMaps();
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner non-commercial license
@@ -396,6 +498,35 @@ public class Application extends JFrame {
         chatEditPanel = new JPanel();
         chatEdit = new JTextField();
         chatButton = new JButton();
+        mapsMainPanel = new JPanel();
+        mapaPanel = new JPanel();
+        mapaJPanel1 = new MapaJPanel();
+        nastaveniMapaPanel = new JPanel();
+        panel1 = new JPanel();
+        label22 = new JLabel();
+        label16 = compFactory.createLabel("Lod 1");
+        buttonShipSet1 = new JButton();
+        buttonShipDelete1 = new JButton();
+        checkBoxShip1 = new JCheckBox();
+        label17 = compFactory.createLabel("Lod 2");
+        buttonShipSet2 = new JButton();
+        buttonShipDelete2 = new JButton();
+        checkBoxShip2 = new JCheckBox();
+        label18 = compFactory.createLabel("Lod 3");
+        buttonShipSet3 = new JButton();
+        buttonShipDelete3 = new JButton();
+        checkBoxShip3 = new JCheckBox();
+        panel3 = new JPanel();
+        label19 = compFactory.createLabel("Phaser (3)");
+        buttonShootSet1 = new JButton();
+        buttonShipShootDelete1 = new JButton();
+        label20 = compFactory.createLabel("Impulzni");
+        buttonShootSet2 = new JButton();
+        buttonShipShootDelete2 = new JButton();
+        label21 = compFactory.createLabel("Energeticke");
+        buttonShootSet3 = new JButton();
+        buttonShipShootDelete3 = new JButton();
+        buttonShipShootDeleteAll = new JButton();
         clientsListModel = ServerUtils.getServerClients();
         chatListModel = Chat.getChatListModel();
         zdrojeListModel = clientData.getZdroje().getList();
@@ -497,7 +628,6 @@ public class Application extends JFrame {
             }
             tabbedPane1.addTab("\u0160t\u00edty", stityPanel);
 
-
             //======== scaneryPanel ========
             {
                 scaneryPanel.setBorder(new TitledBorder("Ruzne"));
@@ -570,7 +700,6 @@ public class Application extends JFrame {
                 scaneryPanel.add(scrollPane2, BorderLayout.CENTER);
             }
             tabbedPane1.addTab("Scanery", scaneryPanel);
-
 
             //======== motoryPanel ========
             {
@@ -645,7 +774,6 @@ public class Application extends JFrame {
             }
             tabbedPane1.addTab("Motory", motoryPanel);
 
-
             //======== zbranePanel ========
             {
                 zbranePanel.setBorder(new TitledBorder("Zbran\u011b"));
@@ -719,7 +847,6 @@ public class Application extends JFrame {
             }
             tabbedPane1.addTab("Zbran\u011b", zbranePanel);
 
-
             //======== zdrojePanel ========
             {
                 zdrojePanel.setBorder(new TitledBorder("Zdroje"));
@@ -762,7 +889,6 @@ public class Application extends JFrame {
             }
             tabbedPane1.addTab("Zdroje", zdrojePanel);
 
-
             //======== spotrebaMainPanel ========
             {
                 spotrebaMainPanel.setLayout(new BorderLayout());
@@ -771,8 +897,8 @@ public class Application extends JFrame {
                 {
                     spotrebaPanel.setBorder(new TitledBorder("Spotreba"));
                     spotrebaPanel.setLayout(new FormLayout(
-                            "6*(default, $lcgap), default",
-                            "fill:default, 6*($lgap, default)"));
+                        "6*(default, $lcgap), default",
+                        "fill:default, 6*($lgap, default)"));
 
                     //---- label6 ----
                     label6.setText("Vykon");
@@ -970,8 +1096,8 @@ public class Application extends JFrame {
                 {
                     palivoPanel.setBorder(new TitledBorder("Palivo"));
                     palivoPanel.setLayout(new FormLayout(
-                            "default, $lcgap, 53dlu, $lcgap, 64dlu",
-                            "fill:default, 6*($lgap, default)"));
+                        "default, $lcgap, 53dlu, $lcgap, 64dlu",
+                        "fill:default, 6*($lgap, default)"));
 
                     //---- label12 ----
                     label12.setText("Celkem paliva");
@@ -1029,7 +1155,6 @@ public class Application extends JFrame {
                 spotrebaMainPanel.add(palivoPanel, BorderLayout.CENTER);
             }
             tabbedPane1.addTab("Spot\u0159eba", spotrebaMainPanel);
-
 
             //======== serverPanel ========
             {
@@ -1106,8 +1231,8 @@ public class Application extends JFrame {
                     //======== serverFormPanel ========
                     {
                         serverFormPanel.setLayout(new FormLayout(
-                                "35dlu, $lcgap, 81dlu, $lcgap, default",
-                                "2*(default, $lgap), default"));
+                            "35dlu, $lcgap, 81dlu, $lcgap, default",
+                            "2*(default, $lgap), default"));
 
                         //---- label10 ----
                         label10.setText("Port");
@@ -1127,7 +1252,6 @@ public class Application extends JFrame {
                 serverPanel.add(serverPropertiesPanel, BorderLayout.EAST);
             }
             tabbedPane1.addTab("Server", serverPanel);
-
 
             //======== chatPanel ========
             {
@@ -1169,6 +1293,234 @@ public class Application extends JFrame {
             }
             tabbedPane1.addTab("Chat", chatPanel);
 
+            //======== mapsMainPanel ========
+            {
+                mapsMainPanel.setLayout(new BorderLayout());
+
+                //======== mapaPanel ========
+                {
+                    mapaPanel.setBorder(new TitledBorder("Mapa"));
+                    mapaPanel.setLayout(new BorderLayout());
+
+                    //---- mapaJPanel1 ----
+                    mapaJPanel1.setMapData(clientData.getMapa());
+                    mapaJPanel1.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mousePressed(MouseEvent e) {
+                            mapaJPanel1MousePressed(e);
+                        }
+                    });
+                    mapaPanel.add(mapaJPanel1, BorderLayout.CENTER);
+                }
+                mapsMainPanel.add(mapaPanel, BorderLayout.CENTER);
+
+                //======== nastaveniMapaPanel ========
+                {
+                    nastaveniMapaPanel.setBorder(new TitledBorder("Nastaveni"));
+                    nastaveniMapaPanel.setMinimumSize(new Dimension(270, 192));
+                    nastaveniMapaPanel.setPreferredSize(new Dimension(270, 192));
+                    nastaveniMapaPanel.setLayout(new VerticalLayout());
+
+                    //======== panel1 ========
+                    {
+                        panel1.setBorder(new TitledBorder("Lode"));
+                        panel1.setLayout(new FormLayout(
+                            "3*(default), $lcgap, default",
+                            "4*(default, $lgap), default"));
+
+                        //---- label22 ----
+                        label22.setText("Zl\u00e1");
+                        panel1.add(label22, CC.xy(5, 1));
+
+                        //---- label16 ----
+                        label16.setBackground(new Color(51, 204, 255));
+                        panel1.add(label16, CC.xy(1, 3));
+
+                        //---- buttonShipSet1 ----
+                        buttonShipSet1.setText("Nastavit");
+                        buttonShipSet1.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                buttonShipSet1ActionPerformed(e);
+                            }
+                        });
+                        panel1.add(buttonShipSet1, CC.xy(2, 3));
+
+                        //---- buttonShipDelete1 ----
+                        buttonShipDelete1.setText("Vymazat");
+                        buttonShipDelete1.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                buttonShipDelete1ActionPerformed(e);
+                            }
+                        });
+                        panel1.add(buttonShipDelete1, CC.xy(3, 3));
+
+                        //---- checkBoxShip1 ----
+                        checkBoxShip1.addItemListener(new ItemListener() {
+                            @Override
+                            public void itemStateChanged(ItemEvent e) {
+                                checkBoxShip1ItemStateChanged(e);
+                            }
+                        });
+                        panel1.add(checkBoxShip1, CC.xy(5, 3));
+                        panel1.add(label17, CC.xy(1, 5));
+
+                        //---- buttonShipSet2 ----
+                        buttonShipSet2.setText("Nastavit");
+                        buttonShipSet2.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                buttonShipSet2ActionPerformed(e);
+                            }
+                        });
+                        panel1.add(buttonShipSet2, CC.xy(2, 5));
+
+                        //---- buttonShipDelete2 ----
+                        buttonShipDelete2.setText("Vymazat");
+                        buttonShipDelete2.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                buttonShipDelete2ActionPerformed(e);
+                            }
+                        });
+                        panel1.add(buttonShipDelete2, CC.xy(3, 5));
+
+                        //---- checkBoxShip2 ----
+                        checkBoxShip2.addItemListener(new ItemListener() {
+                            @Override
+                            public void itemStateChanged(ItemEvent e) {
+                                checkBoxShip2ItemStateChanged(e);
+                            }
+                        });
+                        panel1.add(checkBoxShip2, CC.xy(5, 5));
+                        panel1.add(label18, CC.xy(1, 7));
+
+                        //---- buttonShipSet3 ----
+                        buttonShipSet3.setText("Nastavit");
+                        buttonShipSet3.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                buttonShipSet3ActionPerformed(e);
+                            }
+                        });
+                        panel1.add(buttonShipSet3, CC.xy(2, 7));
+
+                        //---- buttonShipDelete3 ----
+                        buttonShipDelete3.setText("Vymazat");
+                        buttonShipDelete3.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                buttonShipDelete3ActionPerformed(e);
+                            }
+                        });
+                        panel1.add(buttonShipDelete3, CC.xy(3, 7));
+
+                        //---- checkBoxShip3 ----
+                        checkBoxShip3.addItemListener(new ItemListener() {
+                            @Override
+                            public void itemStateChanged(ItemEvent e) {
+                                checkBoxShip3ItemStateChanged(e);
+                            }
+                        });
+                        panel1.add(checkBoxShip3, CC.xy(5, 7));
+                    }
+                    nastaveniMapaPanel.add(panel1);
+
+                    //======== panel3 ========
+                    {
+                        panel3.setBorder(new TitledBorder("Zbran\u011b"));
+                        panel3.setLayout(new FormLayout(
+                            "2*(default, $lcgap), default",
+                            "5*(default, $lgap), default"));
+
+                        //---- label19 ----
+                        label19.setText("Phaser (3)");
+                        panel3.add(label19, CC.xy(1, 1));
+
+                        //---- buttonShootSet1 ----
+                        buttonShootSet1.setText("Vyst\u0159elit");
+                        buttonShootSet1.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                buttonShootSet1ActionPerformed(e);
+                            }
+                        });
+                        panel3.add(buttonShootSet1, CC.xy(3, 1));
+
+                        //---- buttonShipShootDelete1 ----
+                        buttonShipShootDelete1.setText("Vymazat");
+                        buttonShipShootDelete1.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                buttonShipShootDelete1ActionPerformed(e);
+                            }
+                        });
+                        panel3.add(buttonShipShootDelete1, CC.xy(5, 1));
+
+                        //---- label20 ----
+                        label20.setText("Impulzni (1)");
+                        panel3.add(label20, CC.xy(1, 3));
+
+                        //---- buttonShootSet2 ----
+                        buttonShootSet2.setText("Vyst\u0159elit");
+                        buttonShootSet2.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                buttonShootSet2ActionPerformed(e);
+                            }
+                        });
+                        panel3.add(buttonShootSet2, CC.xy(3, 3));
+
+                        //---- buttonShipShootDelete2 ----
+                        buttonShipShootDelete2.setText("Vymazat");
+                        buttonShipShootDelete2.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                buttonShipShootDelete2ActionPerformed(e);
+                            }
+                        });
+                        panel3.add(buttonShipShootDelete2, CC.xy(5, 3));
+
+                        //---- label21 ----
+                        label21.setText("Energeticke (1)");
+                        panel3.add(label21, CC.xy(1, 5));
+
+                        //---- buttonShootSet3 ----
+                        buttonShootSet3.setText("Vyst\u0159elit");
+                        buttonShootSet3.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                buttonShootSet3ActionPerformed(e);
+                            }
+                        });
+                        panel3.add(buttonShootSet3, CC.xy(3, 5));
+
+                        //---- buttonShipShootDelete3 ----
+                        buttonShipShootDelete3.setText("Vymazat");
+                        buttonShipShootDelete3.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                buttonShipShootDelete3ActionPerformed(e);
+                            }
+                        });
+                        panel3.add(buttonShipShootDelete3, CC.xy(5, 5));
+
+                        //---- buttonShipShootDeleteAll ----
+                        buttonShipShootDeleteAll.setText("Vymazat v\u0161echny");
+                        buttonShipShootDeleteAll.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                buttonShipShootDeleteAllActionPerformed(e);
+                            }
+                        });
+                        panel3.add(buttonShipShootDeleteAll, CC.xywh(3, 7, 3, 1));
+                    }
+                    nastaveniMapaPanel.add(panel3);
+                }
+                mapsMainPanel.add(nastaveniMapaPanel, BorderLayout.LINE_END);
+            }
+            tabbedPane1.addTab("Mapa", mapsMainPanel);
         }
         contentPane.add(tabbedPane1, BorderLayout.CENTER);
         setSize(1080, 600);
@@ -1178,349 +1530,349 @@ public class Application extends JFrame {
         bindingGroup = new BindingGroup();
         {
             JTableBinding binding = SwingBindings.createJTableBinding(UpdateStrategy.READ_WRITE,
-                    clientsListModel, clientTable);
+                clientsListModel, clientTable);
             binding.setEditable(false);
             binding.addColumnBinding(BeanProperty.create("clientName"))
-                    .setColumnName("Klient")
-                    .setColumnClass(String.class);
+                .setColumnName("Klient")
+                .setColumnClass(String.class);
             binding.addColumnBinding(BeanProperty.create("clientIp"))
-                    .setColumnName("Ip adrresa")
-                    .setColumnClass(String.class);
+                .setColumnName("Ip adrresa")
+                .setColumnClass(String.class);
             binding.addColumnBinding(BeanProperty.create("connected"))
-                    .setColumnName("Connected")
-                    .setColumnClass(Boolean.class);
+                .setColumnName("Connected")
+                .setColumnClass(Boolean.class);
             binding.addColumnBinding(BeanProperty.create("port"))
-                    .setColumnName("Port")
-                    .setColumnClass(Integer.class);
+                .setColumnName("Port")
+                .setColumnClass(Integer.class);
             bindingGroup.addBinding(binding);
             binding.bind();
         }
         bindingGroup.addBinding(SwingBindings.createJListBinding(UpdateStrategy.READ,
-                chatListModel, chatList));
+            chatListModel, chatList));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ,
-                chatListModel, ELProperty.create("${length}"),
-                chatList, BeanProperty.create("selectedIndex")));
+            chatListModel, ELProperty.create("${length}"),
+            chatList, BeanProperty.create("selectedIndex")));
         {
             JTableBinding binding = SwingBindings.createJTableBinding(UpdateStrategy.READ_WRITE,
-                    stityListModel, stityTable);
+                stityListModel, stityTable);
             binding.setEditable(false);
             binding.addColumnBinding(BeanProperty.create("nazev"))
-                    .setColumnName("Nazev")
-                    .setColumnClass(String.class);
+                .setColumnName("Nazev")
+                .setColumnClass(String.class);
             binding.addColumnBinding(BeanProperty.create("aktualniUroven.nazev"))
-                    .setColumnName("Uroven")
-                    .setColumnClass(String.class)
-                    .setEditable(false);
+                .setColumnName("Uroven")
+                .setColumnClass(String.class)
+                .setEditable(false);
             binding.addColumnBinding(BeanProperty.create("aktualniUroven.spotreba"))
-                    .setColumnName("Spotreba")
-                    .setColumnClass(Integer.class)
-                    .setEditable(false);
+                .setColumnName("Spotreba")
+                .setColumnClass(Integer.class)
+                .setEditable(false);
             binding.addColumnBinding(BeanProperty.create("ovladatelnost"))
-                    .setColumnName("Ovladatelnost")
-                    .setColumnClass(Boolean.class);
+                .setColumnName("Ovladatelnost")
+                .setColumnClass(Boolean.class);
             binding.addColumnBinding(BeanProperty.create("viditelnost"))
-                    .setColumnName("Viditelnost")
-                    .setColumnClass(Boolean.class);
+                .setColumnName("Viditelnost")
+                .setColumnClass(Boolean.class);
             binding.addColumnBinding(BeanProperty.create("zapnut"))
-                    .setColumnName("Zapnut")
-                    .setColumnClass(Boolean.class);
+                .setColumnName("Zapnut")
+                .setColumnClass(Boolean.class);
             binding.addColumnBinding(BeanProperty.create("priorita"))
-                    .setColumnName("Priorita")
-                    .setColumnClass(Integer.class);
+                .setColumnName("Priorita")
+                .setColumnClass(Integer.class);
             bindingGroup.addBinding(binding);
         }
         {
             Binding binding = Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                    spotrebaData, BeanProperty.create("celkovyVykon"),
-                    vykonCelkem, BeanProperty.create("text"));
+                spotrebaData, BeanProperty.create("celkovyVykon"),
+                vykonCelkem, BeanProperty.create("text"));
             bindingGroup.addBinding(binding);
             binding.bind();
         }
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                spotrebaData, BeanProperty.create("motoryVykon"),
-                vykonMotory, BeanProperty.create("text")));
+            spotrebaData, BeanProperty.create("motoryVykon"),
+            vykonMotory, BeanProperty.create("text")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                spotrebaData, BeanProperty.create("scaneryVykon"),
-                vykonScanery, BeanProperty.create("text")));
+            spotrebaData, BeanProperty.create("scaneryVykon"),
+            vykonScanery, BeanProperty.create("text")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                spotrebaData, BeanProperty.create("zbraneVykon"),
-                vykonZbrane, BeanProperty.create("text")));
+            spotrebaData, BeanProperty.create("zbraneVykon"),
+            vykonZbrane, BeanProperty.create("text")));
         {
             Binding binding = Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                    spotrebaData, BeanProperty.create("celkovaSpotreba"),
-                    spotrebaCelkem, BeanProperty.create("text"));
+                spotrebaData, BeanProperty.create("celkovaSpotreba"),
+                spotrebaCelkem, BeanProperty.create("text"));
             binding.setTargetNullValue(0);
             bindingGroup.addBinding(binding);
         }
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                spotrebaData, BeanProperty.create("stityVykon"),
-                vykonStity, BeanProperty.create("text")));
+            spotrebaData, BeanProperty.create("stityVykon"),
+            vykonStity, BeanProperty.create("text")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                spotrebaData, BeanProperty.create("stitySpotreba"),
-                spotrebaStity, BeanProperty.create("text")));
+            spotrebaData, BeanProperty.create("stitySpotreba"),
+            spotrebaStity, BeanProperty.create("text")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                spotrebaData, BeanProperty.create("zbraneSpotreba"),
-                spotrebaZbrane, BeanProperty.create("text")));
+            spotrebaData, BeanProperty.create("zbraneSpotreba"),
+            spotrebaZbrane, BeanProperty.create("text")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                spotrebaData, BeanProperty.create("scanerySpotreba"),
-                spotrebaScanery, BeanProperty.create("text")));
+            spotrebaData, BeanProperty.create("scanerySpotreba"),
+            spotrebaScanery, BeanProperty.create("text")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                spotrebaData, BeanProperty.create("motorySpotreba"),
-                spotrebaMotory, BeanProperty.create("text")));
+            spotrebaData, BeanProperty.create("motorySpotreba"),
+            spotrebaMotory, BeanProperty.create("text")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                spotrebaData, BeanProperty.create("enablePlus"),
-                motoryZvisit, BeanProperty.create("enabled")));
+            spotrebaData, BeanProperty.create("enablePlus"),
+            motoryZvisit, BeanProperty.create("enabled")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                spotrebaData, BeanProperty.create("enablePlus"),
-                scaneryZvisit, BeanProperty.create("enabled")));
+            spotrebaData, BeanProperty.create("enablePlus"),
+            scaneryZvisit, BeanProperty.create("enabled")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                spotrebaData, BeanProperty.create("enablePlus"),
-                zbraneZvisit, BeanProperty.create("enabled")));
+            spotrebaData, BeanProperty.create("enablePlus"),
+            zbraneZvisit, BeanProperty.create("enabled")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                spotrebaData, BeanProperty.create("enablePlus"),
-                stityZvisit, BeanProperty.create("enabled")));
+            spotrebaData, BeanProperty.create("enablePlus"),
+            stityZvisit, BeanProperty.create("enabled")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                spotrebaData, BeanProperty.create("enableMinusMotory"),
-                motorySnizit, BeanProperty.create("enabled")));
+            spotrebaData, BeanProperty.create("enableMinusMotory"),
+            motorySnizit, BeanProperty.create("enabled")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                spotrebaData, BeanProperty.create("enableMinusScanery"),
-                scanerySnizit, BeanProperty.create("enabled")));
+            spotrebaData, BeanProperty.create("enableMinusScanery"),
+            scanerySnizit, BeanProperty.create("enabled")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                spotrebaData, BeanProperty.create("enableMinusZbrane"),
-                zbraneSnizit, BeanProperty.create("enabled")));
+            spotrebaData, BeanProperty.create("enableMinusZbrane"),
+            zbraneSnizit, BeanProperty.create("enabled")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                spotrebaData, BeanProperty.create("enableMinusStity"),
-                stitySnizit, BeanProperty.create("enabled")));
+            spotrebaData, BeanProperty.create("enableMinusStity"),
+            stitySnizit, BeanProperty.create("enabled")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                spotrebaData, BeanProperty.create("enableMotory"),
-                checkBox2, BeanProperty.create("selected")));
+            spotrebaData, BeanProperty.create("enableMotory"),
+            checkBox2, BeanProperty.create("selected")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                spotrebaData, BeanProperty.create("enableScanery"),
-                checkBox3, BeanProperty.create("selected")));
+            spotrebaData, BeanProperty.create("enableScanery"),
+            checkBox3, BeanProperty.create("selected")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                spotrebaData, BeanProperty.create("enableZbrane"),
-                checkBox4, BeanProperty.create("selected")));
+            spotrebaData, BeanProperty.create("enableZbrane"),
+            checkBox4, BeanProperty.create("selected")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                spotrebaData, BeanProperty.create("enableStity"),
-                checkBox5, BeanProperty.create("selected")));
+            spotrebaData, BeanProperty.create("enableStity"),
+            checkBox5, BeanProperty.create("selected")));
         {
             JTableBinding binding = SwingBindings.createJTableBinding(UpdateStrategy.READ_WRITE,
-                    scaneryListModel, scaneryTable);
+                scaneryListModel, scaneryTable);
             binding.addColumnBinding(BeanProperty.create("nazev"))
-                    .setColumnName("Nazev")
-                    .setColumnClass(String.class);
+                .setColumnName("Nazev")
+                .setColumnClass(String.class);
             binding.addColumnBinding(BeanProperty.create("aktualniUroven.nazev"))
-                    .setColumnName("Uroven")
-                    .setColumnClass(String.class)
-                    .setEditable(false);
+                .setColumnName("Uroven")
+                .setColumnClass(String.class)
+                .setEditable(false);
             binding.addColumnBinding(BeanProperty.create("aktualniUroven.spotreba"))
-                    .setColumnName("Spotreba")
-                    .setColumnClass(Integer.class)
-                    .setEditable(false);
+                .setColumnName("Spotreba")
+                .setColumnClass(Integer.class)
+                .setEditable(false);
             binding.addColumnBinding(BeanProperty.create("ovladatelnost"))
-                    .setColumnName("Ovladatelnost")
-                    .setColumnClass(Boolean.class);
+                .setColumnName("Ovladatelnost")
+                .setColumnClass(Boolean.class);
             binding.addColumnBinding(BeanProperty.create("viditelnost"))
-                    .setColumnName("Viditelnost")
-                    .setColumnClass(Boolean.class);
+                .setColumnName("Viditelnost")
+                .setColumnClass(Boolean.class);
             binding.addColumnBinding(BeanProperty.create("zapnut"))
-                    .setColumnName("Zapnut")
-                    .setColumnClass(Boolean.class);
+                .setColumnName("Zapnut")
+                .setColumnClass(Boolean.class);
             binding.addColumnBinding(BeanProperty.create("priorita"))
-                    .setColumnName("Priorita")
-                    .setColumnClass(Integer.class);
+                .setColumnName("Priorita")
+                .setColumnClass(Integer.class);
             bindingGroup.addBinding(binding);
         }
         {
             JTableBinding binding = SwingBindings.createJTableBinding(UpdateStrategy.READ_WRITE,
-                    zbraneListModel, zbraneTable);
+                zbraneListModel, zbraneTable);
             binding.addColumnBinding(BeanProperty.create("nazev"))
-                    .setColumnName("Nazev")
-                    .setColumnClass(String.class);
+                .setColumnName("Nazev")
+                .setColumnClass(String.class);
             binding.addColumnBinding(BeanProperty.create("aktualniUroven.nazev"))
-                    .setColumnName("Uroven")
-                    .setColumnClass(String.class)
-                    .setEditable(false);
+                .setColumnName("Uroven")
+                .setColumnClass(String.class)
+                .setEditable(false);
             binding.addColumnBinding(BeanProperty.create("aktualniUroven.spotreba"))
-                    .setColumnName("Spotreba")
-                    .setColumnClass(Integer.class)
-                    .setEditable(false);
+                .setColumnName("Spotreba")
+                .setColumnClass(Integer.class)
+                .setEditable(false);
             binding.addColumnBinding(BeanProperty.create("ovladatelnost"))
-                    .setColumnName("Ovladatelnost")
-                    .setColumnClass(Boolean.class);
+                .setColumnName("Ovladatelnost")
+                .setColumnClass(Boolean.class);
             binding.addColumnBinding(BeanProperty.create("viditelnost"))
-                    .setColumnName("Viditelnost")
-                    .setColumnClass(Boolean.class);
+                .setColumnName("Viditelnost")
+                .setColumnClass(Boolean.class);
             binding.addColumnBinding(BeanProperty.create("zapnut"))
-                    .setColumnName("Zapnut")
-                    .setColumnClass(Boolean.class);
+                .setColumnName("Zapnut")
+                .setColumnClass(Boolean.class);
             binding.addColumnBinding(BeanProperty.create("priorita"))
-                    .setColumnName("Priorita")
-                    .setColumnClass(Integer.class);
+                .setColumnName("Priorita")
+                .setColumnClass(Integer.class);
             bindingGroup.addBinding(binding);
         }
         {
             JTableBinding binding = SwingBindings.createJTableBinding(UpdateStrategy.READ_WRITE,
-                    motoryListModel, motoryTable);
+                motoryListModel, motoryTable);
             binding.addColumnBinding(BeanProperty.create("nazev"))
-                    .setColumnName("Nazev")
-                    .setColumnClass(String.class);
+                .setColumnName("Nazev")
+                .setColumnClass(String.class);
             binding.addColumnBinding(BeanProperty.create("aktualniUroven.nazev"))
-                    .setColumnName("Uroven")
-                    .setColumnClass(String.class)
-                    .setEditable(false);
+                .setColumnName("Uroven")
+                .setColumnClass(String.class)
+                .setEditable(false);
             binding.addColumnBinding(BeanProperty.create("aktualniUroven.spotreba"))
-                    .setColumnName("Spotreba")
-                    .setColumnClass(Integer.class)
-                    .setEditable(false);
+                .setColumnName("Spotreba")
+                .setColumnClass(Integer.class)
+                .setEditable(false);
             binding.addColumnBinding(BeanProperty.create("ovladatelnost"))
-                    .setColumnName("Ovladatelnost")
-                    .setColumnClass(Boolean.class);
+                .setColumnName("Ovladatelnost")
+                .setColumnClass(Boolean.class);
             binding.addColumnBinding(BeanProperty.create("viditelnost"))
-                    .setColumnName("Viditelnost")
-                    .setColumnClass(Boolean.class);
+                .setColumnName("Viditelnost")
+                .setColumnClass(Boolean.class);
             binding.addColumnBinding(BeanProperty.create("zapnut"))
-                    .setColumnName("Zapnut")
-                    .setColumnClass(Boolean.class);
+                .setColumnName("Zapnut")
+                .setColumnClass(Boolean.class);
             binding.addColumnBinding(BeanProperty.create("priorita"))
-                    .setColumnName("Priorita")
-                    .setColumnClass(Integer.class);
+                .setColumnName("Priorita")
+                .setColumnClass(Integer.class);
             bindingGroup.addBinding(binding);
         }
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                startServerButton, BeanProperty.create("enabled"),
-                stityUrovne, BeanProperty.create("enabled")));
+            startServerButton, BeanProperty.create("enabled"),
+            stityUrovne, BeanProperty.create("enabled")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                startServerButton, BeanProperty.create("enabled"),
-                pridatStitButton, BeanProperty.create("enabled")));
+            startServerButton, BeanProperty.create("enabled"),
+            pridatStitButton, BeanProperty.create("enabled")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                startServerButton, BeanProperty.create("enabled"),
-                smazatStitButton, BeanProperty.create("enabled")));
+            startServerButton, BeanProperty.create("enabled"),
+            smazatStitButton, BeanProperty.create("enabled")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                startServerButton, BeanProperty.create("enabled"),
-                scanerUrovne, BeanProperty.create("enabled")));
+            startServerButton, BeanProperty.create("enabled"),
+            scanerUrovne, BeanProperty.create("enabled")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                startServerButton, BeanProperty.create("enabled"),
-                pridatScanerButton2, BeanProperty.create("enabled")));
+            startServerButton, BeanProperty.create("enabled"),
+            pridatScanerButton2, BeanProperty.create("enabled")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                startServerButton, BeanProperty.create("enabled"),
-                smazatScanerButton2, BeanProperty.create("enabled")));
+            startServerButton, BeanProperty.create("enabled"),
+            smazatScanerButton2, BeanProperty.create("enabled")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                startServerButton, BeanProperty.create("enabled"),
-                zbranUrovne, BeanProperty.create("enabled")));
+            startServerButton, BeanProperty.create("enabled"),
+            zbranUrovne, BeanProperty.create("enabled")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                startServerButton, BeanProperty.create("enabled"),
-                pridatZbranButton, BeanProperty.create("enabled")));
+            startServerButton, BeanProperty.create("enabled"),
+            pridatZbranButton, BeanProperty.create("enabled")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                startServerButton, BeanProperty.create("enabled"),
-                smazatZbranButton, BeanProperty.create("enabled")));
+            startServerButton, BeanProperty.create("enabled"),
+            smazatZbranButton, BeanProperty.create("enabled")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                startServerButton, BeanProperty.create("enabled"),
-                motorUrovne, BeanProperty.create("enabled")));
+            startServerButton, BeanProperty.create("enabled"),
+            motorUrovne, BeanProperty.create("enabled")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                startServerButton, BeanProperty.create("enabled"),
-                pridatMotorButton, BeanProperty.create("enabled")));
+            startServerButton, BeanProperty.create("enabled"),
+            pridatMotorButton, BeanProperty.create("enabled")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                startServerButton, BeanProperty.create("enabled"),
-                smazatMotorButton, BeanProperty.create("enabled")));
+            startServerButton, BeanProperty.create("enabled"),
+            smazatMotorButton, BeanProperty.create("enabled")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                startServerButton, BeanProperty.create("enabled"),
-                zdrojOdebrat, BeanProperty.create("enabled")));
+            startServerButton, BeanProperty.create("enabled"),
+            zdrojOdebrat, BeanProperty.create("enabled")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                spotrebaData, BeanProperty.create("timerSpotrebaEnable"),
-                vykonSpotrebaEnable, BeanProperty.create("selected")));
+            spotrebaData, BeanProperty.create("timerSpotrebaEnable"),
+            vykonSpotrebaEnable, BeanProperty.create("selected")));
         {
             Binding binding = Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                    serverController, BeanProperty.create("energieSourceServerController.recalculateFuel"),
-                    palivoTimerEnabled, BeanProperty.create("selected"));
+                serverController, BeanProperty.create("energieSourceServerController.recalculateFuel"),
+                palivoTimerEnabled, BeanProperty.create("selected"));
             binding.setTargetNullValue(false);
             bindingGroup.addBinding(binding);
         }
         {
             Binding binding = Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                    spotrebaData, BeanProperty.create("palivoCelkem"),
-                    palivoCelkem, BeanProperty.create("text"));
+                spotrebaData, BeanProperty.create("palivoCelkem"),
+                palivoCelkem, BeanProperty.create("text"));
             binding.setTargetNullValue(0L);
             bindingGroup.addBinding(binding);
         }
         {
             Binding binding = Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-                    spotrebaData, BeanProperty.create("palivoSpotreba"),
-                    palivoSpotreba, BeanProperty.create("text"));
+                spotrebaData, BeanProperty.create("palivoSpotreba"),
+                palivoSpotreba, BeanProperty.create("text"));
             binding.setTargetNullValue(0L);
             bindingGroup.addBinding(binding);
         }
         {
             Binding binding = Bindings.createAutoBinding(UpdateStrategy.READ,
-                    spotrebaData, BeanProperty.create("palivoTime"),
-                    palivoCasCelkem, BeanProperty.create("text"));
+                spotrebaData, BeanProperty.create("palivoTime"),
+                palivoCasCelkem, BeanProperty.create("text"));
             binding.setConverter(longToTimeStringConverter1);
             bindingGroup.addBinding(binding);
         }
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ,
-                startServerButton, BeanProperty.create("enabled"),
-                serverPortField, BeanProperty.create("enabled")));
+            startServerButton, BeanProperty.create("enabled"),
+            serverPortField, BeanProperty.create("enabled")));
         bindingGroup.bind();
         engineSourceBindingGroup = new BindingGroup();
         {
             JTableBinding binding = SwingBindings.createJTableBinding(UpdateStrategy.READ,
-                    serverController, (BeanProperty) BeanProperty.create("energieSourceServerController.list"), zdrojeTable, "engineSourceBindingGroup");
+                serverController, (BeanProperty) BeanProperty.create("energieSourceServerController.list"), zdrojeTable, "engineSourceBindingGroup");
             binding.setEditable(false);
             binding.addColumnBinding(BeanProperty.create("name"))
-                    .setColumnName("Name")
-                    .setColumnClass(String.class)
-                    .setEditable(false);
+                .setColumnName("Name")
+                .setColumnClass(String.class)
+                .setEditable(false);
             binding.addColumnBinding(BeanProperty.create("enable"))
-                    .setColumnName("Enable")
-                    .setColumnClass(Boolean.class)
-                    .setEditable(false);
+                .setColumnName("Enable")
+                .setColumnClass(Boolean.class)
+                .setEditable(false);
             JTableBinding.ColumnBinding columnBinding = binding.addColumnBinding(BeanProperty.create("fuelUsage"))
-                    .setColumnName("Fuel Usage")
-                    .setColumnClass(Long.class)
-                    .setEditable(false);
+                .setColumnName("Fuel Usage")
+                .setColumnClass(Long.class)
+                .setEditable(false);
             columnBinding.setTargetNullValue(0L);
             columnBinding = binding.addColumnBinding(BeanProperty.create("fuelUsageActual"))
-                    .setColumnName("Fuel Usage Actual")
-                    .setColumnClass(Long.class)
-                    .setEditable(false);
+                .setColumnName("Fuel Usage Actual")
+                .setColumnClass(Long.class)
+                .setEditable(false);
             columnBinding.setTargetNullValue(0L);
             columnBinding = binding.addColumnBinding(BeanProperty.create("powerActual"))
-                    .setColumnName("Power Actual")
-                    .setColumnClass(Long.class)
-                    .setEditable(false);
+                .setColumnName("Power Actual")
+                .setColumnClass(Long.class)
+                .setEditable(false);
             columnBinding.setTargetNullValue(0L);
             binding.addColumnBinding(BeanProperty.create("powerNeeded"))
-                    .setColumnName("Power Needed")
-                    .setColumnClass(Long.class)
-                    .setEditable(false);
+                .setColumnName("Power Needed")
+                .setColumnClass(Long.class)
+                .setEditable(false);
             columnBinding = binding.addColumnBinding(BeanProperty.create("powerAddSpeed"))
-                    .setColumnName("Power Add Speed")
-                    .setColumnClass(Long.class)
-                    .setEditable(false);
+                .setColumnName("Power Add Speed")
+                .setColumnClass(Long.class)
+                .setEditable(false);
             columnBinding.setTargetNullValue(0L);
             columnBinding = binding.addColumnBinding(BeanProperty.create("powerMax"))
-                    .setColumnName("Power Max")
-                    .setColumnClass(Long.class)
-                    .setEditable(false);
+                .setColumnName("Power Max")
+                .setColumnClass(Long.class)
+                .setEditable(false);
             columnBinding.setTargetNullValue(0L);
             columnBinding = binding.addColumnBinding(BeanProperty.create("powerMin"))
-                    .setColumnName("Power Min")
-                    .setColumnClass(Long.class)
-                    .setEditable(false);
+                .setColumnName("Power Min")
+                .setColumnClass(Long.class)
+                .setEditable(false);
             columnBinding.setTargetNullValue(0L);
             columnBinding = binding.addColumnBinding(BeanProperty.create("priority"))
-                    .setColumnName("Priority")
-                    .setColumnClass(Long.class)
-                    .setEditable(false);
+                .setColumnName("Priority")
+                .setColumnClass(Long.class)
+                .setEditable(false);
             columnBinding.setTargetNullValue(0L);
             binding.addColumnBinding(BeanProperty.create("visible"))
-                    .setColumnName("Visible")
-                    .setColumnClass(Boolean.class)
-                    .setEditable(false);
+                .setColumnName("Visible")
+                .setColumnClass(Boolean.class)
+                .setEditable(false);
             binding.addColumnBinding(BeanProperty.create("editable"))
-                    .setColumnName("Editable")
-                    .setColumnClass(Boolean.class)
-                    .setEditable(false);
+                .setColumnName("Editable")
+                .setColumnClass(Boolean.class)
+                .setEditable(false);
             engineSourceBindingGroup.addBinding(binding);
         }
         engineSourceBindingGroup.bind();
@@ -1639,6 +1991,35 @@ public class Application extends JFrame {
     private JPanel chatEditPanel;
     private JTextField chatEdit;
     private JButton chatButton;
+    private JPanel mapsMainPanel;
+    private JPanel mapaPanel;
+    private MapaJPanel mapaJPanel1;
+    private JPanel nastaveniMapaPanel;
+    private JPanel panel1;
+    private JLabel label22;
+    private JLabel label16;
+    private JButton buttonShipSet1;
+    private JButton buttonShipDelete1;
+    private JCheckBox checkBoxShip1;
+    private JLabel label17;
+    private JButton buttonShipSet2;
+    private JButton buttonShipDelete2;
+    private JCheckBox checkBoxShip2;
+    private JLabel label18;
+    private JButton buttonShipSet3;
+    private JButton buttonShipDelete3;
+    private JCheckBox checkBoxShip3;
+    private JPanel panel3;
+    private JLabel label19;
+    private JButton buttonShootSet1;
+    private JButton buttonShipShootDelete1;
+    private JLabel label20;
+    private JButton buttonShootSet2;
+    private JButton buttonShipShootDelete2;
+    private JLabel label21;
+    private JButton buttonShootSet3;
+    private JButton buttonShipShootDelete3;
+    private JButton buttonShipShootDeleteAll;
     private ObservableList<server.ServerClient> clientsListModel;
     private ObservableList<java.lang.String> chatListModel;
     private ObservableList<zdroje.Zdroj> zdrojeListModel;

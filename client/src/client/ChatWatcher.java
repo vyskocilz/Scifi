@@ -1,6 +1,7 @@
 package client;
 
 import data.*;
+import data.mapa.MapData;
 import log.Log;
 import main.ClientApplication;
 
@@ -54,6 +55,9 @@ public class ChatWatcher extends Thread {
         }
         if (data instanceof PalivoData) {
             ClientApplication.dialog.updatePalivo((PalivoData) data);
+        }
+        if (data instanceof MapData) {
+            ClientApplication.dialog.updateMap((MapData) data);
         }
         if (data.getClass() == String.class) {
 //          client.showMsg((String) data + "\n");

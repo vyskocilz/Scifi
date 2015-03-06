@@ -21,6 +21,7 @@ public class ClientProperty {
     public static final String CLIENT_MUSTEK = "client_mustek";
     public static final String CLIENT_NAME = "client_name";
     public static final String CLIENT_STROJOVNA = "client_strojovna";
+    public static final String CLIENT_MAPA = "client_mapa";
     public static final String CLIENT_LOG = "client_log";
     public static final String CLIENT_CLOSE_PASSWORD = "client_close_password";
 
@@ -98,6 +99,9 @@ public class ClientProperty {
         }
         if (getPropertyAsBoolean(CLIENT_STROJOVNA)) {
             clientTypes.add(ClientType.STROJOVNA);
+        }
+        if (getPropertyAsBoolean(CLIENT_MAPA)) {
+            clientTypes.add(ClientType.MAPA);
         }
         if (clientTypes.isEmpty()) {
             clientTypes.add(ClientType.NEZNAMA);

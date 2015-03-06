@@ -3,7 +3,9 @@ package main;
 import base.SpotrebiceEntity;
 import base.SpotrebiceEntityList;
 import data.*;
+import data.mapa.MapData;
 import server.ServerClient;
+import server.ServerUtils;
 import spotrebice.Motory;
 import spotrebice.Scanery;
 import spotrebice.Stity;
@@ -27,6 +29,7 @@ public class ClientData {
     private Scanery scanery = new Scanery();
     private Stity stity = new Stity();
     private Spotreba spotreba;
+    private MapData mapa;
 
     public void init() {
         zdroje.init();
@@ -35,6 +38,7 @@ public class ClientData {
         scanery.init();
         zbrane.init();
         spotreba = new Spotreba(this);
+        mapa = new MapData();
 
     }
 
@@ -110,6 +114,7 @@ public class ClientData {
         zbrane.sendElements();
         motory.sendElements();
         scanery.sendElements();
+        ServerUtils.getClientGroup().broadcast(mapa.copy(), ClientType.MAPA);
     }
 
 
@@ -219,5 +224,9 @@ public class ClientData {
 
     public void setSpotreba(Spotreba spotreba) {
         this.spotreba = spotreba;
+    }
+
+    public MapData getMapa() {
+        return mapa;
     }
 }

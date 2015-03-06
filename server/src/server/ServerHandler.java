@@ -5,6 +5,8 @@ import data.ChatData;
 import data.ClientAkce;
 import data.Login;
 import data.Logout;
+import data.mapa.MapaStrelba;
+import data.mapa.MapaStrelbaDelete;
 import main.Application;
 import org.apache.commons.lang3.StringUtils;
 
@@ -86,12 +88,18 @@ public class ServerHandler extends Thread {
                         cg.fireUpdateChange(client);
                         Application.clientData.onLogin(client);
                     } else if (data instanceof Logout) {
-                        System.out.printf("User '%s' has disconnected\n", ((Login) data).getClientName());
+                        System.out.printf("User '%s' has disconnected\n", client.getClientName());
                         client.setConnected(false);
                     } else if (data instanceof ChatData) {
                         Chat.writeText(StringUtils.join(client.getClientTypes().get(0)), ((ChatData) data).getText());
                     } else if (data instanceof ClientAkce) {
                         Application.clientData.onAction((ClientAkce) data);
+                    } else if (data instanceof MapaStrelba) {
+                        Application.mapController.setShoot(((MapaStrelba) data).getType(), ((MapaStrelba) data).getX(), ((MapaStrelba) data).getY());
+                        Application.dialog.refreshMaps();
+                    } else if (data instanceof MapaStrelbaDelete) {
+                        Application.mapController.deleteShoot(((MapaStrelbaDelete) data).getType());
+                        Application.dialog.refreshMaps();
                     }
                 }
             }
