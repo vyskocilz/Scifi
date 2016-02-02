@@ -385,9 +385,10 @@ public class Application extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner non-commercial license
+        // Generated using JFormDesigner Evaluation license - Alen Takoka
         DefaultComponentFactory compFactory = DefaultComponentFactory.getInstance();
         tabbedPane1 = new JTabbedPane();
+        dashboardMapPanel = new JPanel();
         stityPanel = new JPanel();
         stityToolbar = new JToolBar();
         zvysStitButton = new JButton();
@@ -431,6 +432,19 @@ public class Application extends JFrame {
         zdrojeScrollPanel = new JScrollPane();
         zdrojeTable = new JTable();
         spotrebaMainPanel = new JPanel();
+        scrollPane6 = new JScrollPane();
+        palivoPanel = new JPanel();
+        label12 = new JLabel();
+        palivoCelkem = new JTextField();
+        palivoCasCelkem = new JTextField();
+        label13 = new JLabel();
+        palivoSpotreba = new JTextField();
+        label14 = new JLabel();
+        palivoTimerEnabled = new JCheckBox();
+        label9 = new JLabel();
+        addPalivoSpiner = new JSpinner();
+        addPalivoButton = new JButton();
+        scrollPane5 = new JScrollPane();
         spotrebaPanel = new JPanel();
         label6 = new JLabel();
         label7 = new JLabel();
@@ -464,17 +478,6 @@ public class Application extends JFrame {
         checkBox5 = new JCheckBox();
         label15 = new JLabel();
         vykonSpotrebaEnable = new JCheckBox();
-        palivoPanel = new JPanel();
-        label12 = new JLabel();
-        palivoCelkem = new JTextField();
-        palivoCasCelkem = new JTextField();
-        label13 = new JLabel();
-        palivoSpotreba = new JTextField();
-        label14 = new JLabel();
-        palivoTimerEnabled = new JCheckBox();
-        label9 = new JLabel();
-        addPalivoSpiner = new JSpinner();
-        addPalivoButton = new JButton();
         serverPanel = new JPanel();
         clientPanel = new JPanel();
         clinetScrollPane = new JScrollPane();
@@ -543,6 +546,7 @@ public class Application extends JFrame {
         //======== this ========
         setTitle("Server");
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        setMaximizedBounds(new Rectangle(0, 0, 1680, 1050));
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -554,607 +558,670 @@ public class Application extends JFrame {
 
         //======== tabbedPane1 ========
         {
+            tabbedPane1.setMinimumSize(new Dimension(1000, 441));
 
-            //======== stityPanel ========
+            //======== dashboardMapPanel ========
             {
-                stityPanel.setBorder(new TitledBorder("\u0160t\u00edty"));
-                stityPanel.setLayout(new BorderLayout());
+                dashboardMapPanel.setPreferredSize(new Dimension(50, 50));
+                dashboardMapPanel.setMinimumSize(new Dimension(50, 40));
 
-                //======== stityToolbar ========
+                // JFormDesigner evaluation mark
+                dashboardMapPanel.setBorder(new javax.swing.border.CompoundBorder(
+                    new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
+                        "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+                        javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                        java.awt.Color.red), dashboardMapPanel.getBorder())); dashboardMapPanel.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
+
+                dashboardMapPanel.setLayout(new GridLayout(2, 3));
+
+                //======== stityPanel ========
                 {
-                    stityToolbar.setFloatable(false);
+                    stityPanel.setBorder(new TitledBorder("\u0160t\u00edty"));
+                    stityPanel.setMinimumSize(new Dimension(50, 50));
+                    stityPanel.setPreferredSize(new Dimension(50, 50));
+                    stityPanel.setLayout(new BorderLayout());
 
-                    //---- zvysStitButton ----
-                    zvysStitButton.setText("+ uroven");
-                    zvysStitButton.setMinimumSize(new Dimension(100, 25));
-                    zvysStitButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            zvysStitButtonActionPerformed(e);
-                        }
-                    });
-                    stityToolbar.add(zvysStitButton);
+                    //======== stityToolbar ========
+                    {
+                        stityToolbar.setFloatable(false);
 
-                    //---- snizStitUroven ----
-                    snizStitUroven.setText("- uroven");
-                    snizStitUroven.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            snizStitUrovenActionPerformed(e);
-                        }
-                    });
-                    stityToolbar.add(snizStitUroven);
+                        //---- zvysStitButton ----
+                        zvysStitButton.setText("+ uroven");
+                        zvysStitButton.setMinimumSize(new Dimension(100, 25));
+                        zvysStitButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                zvysStitButtonActionPerformed(e);
+                            }
+                        });
+                        stityToolbar.add(zvysStitButton);
 
-                    //---- stityUrovne ----
-                    stityUrovne.setText("Urovne");
-                    stityUrovne.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            stityUrovneActionPerformed(e);
-                        }
-                    });
-                    stityToolbar.add(stityUrovne);
+                        //---- snizStitUroven ----
+                        snizStitUroven.setText("- uroven");
+                        snizStitUroven.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                snizStitUrovenActionPerformed(e);
+                            }
+                        });
+                        stityToolbar.add(snizStitUroven);
 
-                    //---- pridatStitButton ----
-                    pridatStitButton.setText("Pridat");
-                    pridatStitButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            pridatStitButtonActionPerformed(e);
-                        }
-                    });
-                    stityToolbar.add(pridatStitButton);
+                        //---- stityUrovne ----
+                        stityUrovne.setText("Urovne");
+                        stityUrovne.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                stityUrovneActionPerformed(e);
+                            }
+                        });
+                        stityToolbar.add(stityUrovne);
 
-                    //---- smazatStitButton ----
-                    smazatStitButton.setText("Smazat");
-                    smazatStitButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            smazatStitButtonActionPerformed(e);
-                        }
-                    });
-                    stityToolbar.add(smazatStitButton);
+                        //---- pridatStitButton ----
+                        pridatStitButton.setText("Pridat");
+                        pridatStitButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                pridatStitButtonActionPerformed(e);
+                            }
+                        });
+                        stityToolbar.add(pridatStitButton);
+
+                        //---- smazatStitButton ----
+                        smazatStitButton.setText("Smazat");
+                        smazatStitButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                smazatStitButtonActionPerformed(e);
+                            }
+                        });
+                        stityToolbar.add(smazatStitButton);
+                    }
+                    stityPanel.add(stityToolbar, BorderLayout.PAGE_START);
+
+                    //======== scrollPane1 ========
+                    {
+                        scrollPane1.setPreferredSize(new Dimension(50, 50));
+                        scrollPane1.setMinimumSize(new Dimension(50, 50));
+                        scrollPane1.setMaximumSize(new Dimension(50, 40));
+
+                        //---- stityTable ----
+                        stityTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                        stityTable.setPreferredSize(new Dimension(50, 50));
+                        scrollPane1.setViewportView(stityTable);
+                    }
+                    stityPanel.add(scrollPane1, BorderLayout.CENTER);
                 }
-                stityPanel.add(stityToolbar, BorderLayout.PAGE_START);
+                dashboardMapPanel.add(stityPanel);
 
-                //======== scrollPane1 ========
+                //======== scaneryPanel ========
                 {
+                    scaneryPanel.setBorder(new TitledBorder("Ruzne"));
+                    scaneryPanel.setMinimumSize(new Dimension(50, 50));
+                    scaneryPanel.setPreferredSize(new Dimension(50, 50));
+                    scaneryPanel.setLayout(new BorderLayout());
 
-                    //---- stityTable ----
-                    stityTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-                    scrollPane1.setViewportView(stityTable);
+                    //======== stityToolbar2 ========
+                    {
+                        stityToolbar2.setFloatable(false);
+
+                        //---- zvysScanerButton ----
+                        zvysScanerButton.setText("+ uroven");
+                        zvysScanerButton.setMinimumSize(new Dimension(100, 25));
+                        zvysScanerButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                zvysScanerButtonActionPerformed(e);
+                            }
+                        });
+                        stityToolbar2.add(zvysScanerButton);
+
+                        //---- snizScanerUroven ----
+                        snizScanerUroven.setText("- uroven");
+                        snizScanerUroven.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                snizScanerUrovenActionPerformed(e);
+                            }
+                        });
+                        stityToolbar2.add(snizScanerUroven);
+
+                        //---- scanerUrovne ----
+                        scanerUrovne.setText("Urovne");
+                        scanerUrovne.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                scanerUrovneActionPerformed(e);
+                            }
+                        });
+                        stityToolbar2.add(scanerUrovne);
+
+                        //---- pridatScanerButton2 ----
+                        pridatScanerButton2.setText("Pridat");
+                        pridatScanerButton2.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                pridatScanerButton2ActionPerformed(e);
+                            }
+                        });
+                        stityToolbar2.add(pridatScanerButton2);
+
+                        //---- smazatScanerButton2 ----
+                        smazatScanerButton2.setText("Smazat");
+                        smazatScanerButton2.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                smazatScanerButton2ActionPerformed(e);
+                            }
+                        });
+                        stityToolbar2.add(smazatScanerButton2);
+                    }
+                    scaneryPanel.add(stityToolbar2, BorderLayout.PAGE_START);
+
+                    //======== scrollPane2 ========
+                    {
+                        scrollPane2.setPreferredSize(new Dimension(50, 50));
+                        scrollPane2.setMinimumSize(new Dimension(50, 50));
+
+                        //---- scaneryTable ----
+                        scaneryTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                        scaneryTable.setPreferredSize(new Dimension(50, 50));
+                        scaneryTable.setPreferredScrollableViewportSize(new Dimension(50, 40));
+                        scrollPane2.setViewportView(scaneryTable);
+                    }
+                    scaneryPanel.add(scrollPane2, BorderLayout.CENTER);
                 }
-                stityPanel.add(scrollPane1, BorderLayout.CENTER);
+                dashboardMapPanel.add(scaneryPanel);
+
+                //======== motoryPanel ========
+                {
+                    motoryPanel.setBorder(new TitledBorder("Motory"));
+                    motoryPanel.setMinimumSize(new Dimension(50, 50));
+                    motoryPanel.setPreferredSize(new Dimension(50, 50));
+                    motoryPanel.setLayout(new BorderLayout());
+
+                    //======== stityToolbar4 ========
+                    {
+                        stityToolbar4.setFloatable(false);
+
+                        //---- zvysMotorButton ----
+                        zvysMotorButton.setText("+ uroven");
+                        zvysMotorButton.setMinimumSize(new Dimension(100, 25));
+                        zvysMotorButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                zvysMotorButtonActionPerformed(e);
+                            }
+                        });
+                        stityToolbar4.add(zvysMotorButton);
+
+                        //---- snizMotorUroven ----
+                        snizMotorUroven.setText("- uroven");
+                        snizMotorUroven.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                snizMotorUrovenActionPerformed(e);
+                            }
+                        });
+                        stityToolbar4.add(snizMotorUroven);
+
+                        //---- motorUrovne ----
+                        motorUrovne.setText("Urovne");
+                        motorUrovne.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                motorUrovneActionPerformed(e);
+                            }
+                        });
+                        stityToolbar4.add(motorUrovne);
+
+                        //---- pridatMotorButton ----
+                        pridatMotorButton.setText("Pridat");
+                        pridatMotorButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                pridatMotorButtonActionPerformed(e);
+                            }
+                        });
+                        stityToolbar4.add(pridatMotorButton);
+
+                        //---- smazatMotorButton ----
+                        smazatMotorButton.setText("Smazat");
+                        smazatMotorButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                smazatMotorButtonActionPerformed(e);
+                            }
+                        });
+                        stityToolbar4.add(smazatMotorButton);
+                    }
+                    motoryPanel.add(stityToolbar4, BorderLayout.PAGE_START);
+
+                    //======== scrollPane4 ========
+                    {
+                        scrollPane4.setPreferredSize(new Dimension(50, 50));
+                        scrollPane4.setMinimumSize(new Dimension(50, 50));
+
+                        //---- motoryTable ----
+                        motoryTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                        motoryTable.setPreferredSize(new Dimension(50, 50));
+                        scrollPane4.setViewportView(motoryTable);
+                    }
+                    motoryPanel.add(scrollPane4, BorderLayout.CENTER);
+                }
+                dashboardMapPanel.add(motoryPanel);
+
+                //======== zbranePanel ========
+                {
+                    zbranePanel.setBorder(new TitledBorder("Zbran\u011b"));
+                    zbranePanel.setMinimumSize(new Dimension(50, 50));
+                    zbranePanel.setPreferredSize(new Dimension(50, 50));
+                    zbranePanel.setLayout(new BorderLayout());
+
+                    //======== stityToolbar3 ========
+                    {
+                        stityToolbar3.setFloatable(false);
+
+                        //---- zvysZbranButton ----
+                        zvysZbranButton.setText("+ uroven");
+                        zvysZbranButton.setMinimumSize(new Dimension(100, 25));
+                        zvysZbranButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                zvysZbranButtonActionPerformed(e);
+                            }
+                        });
+                        stityToolbar3.add(zvysZbranButton);
+
+                        //---- snizZbranUroven ----
+                        snizZbranUroven.setText("- uroven");
+                        snizZbranUroven.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                snizZbranUrovenActionPerformed(e);
+                            }
+                        });
+                        stityToolbar3.add(snizZbranUroven);
+
+                        //---- zbranUrovne ----
+                        zbranUrovne.setText("Urovne");
+                        zbranUrovne.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                zbranUrovneActionPerformed(e);
+                            }
+                        });
+                        stityToolbar3.add(zbranUrovne);
+
+                        //---- pridatZbranButton ----
+                        pridatZbranButton.setText("Pridat");
+                        pridatZbranButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                pridatZbranButtonActionPerformed(e);
+                            }
+                        });
+                        stityToolbar3.add(pridatZbranButton);
+
+                        //---- smazatZbranButton ----
+                        smazatZbranButton.setText("Smazat");
+                        smazatZbranButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                smazatZbranButtonActionPerformed(e);
+                            }
+                        });
+                        stityToolbar3.add(smazatZbranButton);
+                    }
+                    zbranePanel.add(stityToolbar3, BorderLayout.PAGE_START);
+
+                    //======== scrollPane3 ========
+                    {
+                        scrollPane3.setPreferredSize(new Dimension(50, 50));
+                        scrollPane3.setMinimumSize(new Dimension(50, 50));
+
+                        //---- zbraneTable ----
+                        zbraneTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                        zbraneTable.setPreferredSize(new Dimension(50, 50));
+                        scrollPane3.setViewportView(zbraneTable);
+                    }
+                    zbranePanel.add(scrollPane3, BorderLayout.CENTER);
+                }
+                dashboardMapPanel.add(zbranePanel);
+
+                //======== zdrojePanel ========
+                {
+                    zdrojePanel.setBorder(new TitledBorder("Zdroje"));
+                    zdrojePanel.setMinimumSize(new Dimension(50, 50));
+                    zdrojePanel.setPreferredSize(new Dimension(50, 50));
+                    zdrojePanel.setLayout(new BorderLayout());
+
+                    //======== zdrojeToolbar ========
+                    {
+                        zdrojeToolbar.setFloatable(false);
+
+                        //---- zdrojPridat ----
+                        zdrojPridat.setText("Pridat");
+                        zdrojPridat.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                zdrojPridatActionPerformed(e);
+                            }
+                        });
+                        zdrojeToolbar.add(zdrojPridat);
+
+                        //---- zdrojOdebrat ----
+                        zdrojOdebrat.setText("Smazat");
+                        zdrojOdebrat.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                zdrojOdebratActionPerformed(e);
+                            }
+                        });
+                        zdrojeToolbar.add(zdrojOdebrat);
+                    }
+                    zdrojePanel.add(zdrojeToolbar, BorderLayout.NORTH);
+
+                    //======== zdrojeScrollPanel ========
+                    {
+                        zdrojeScrollPanel.setPreferredSize(new Dimension(50, 50));
+                        zdrojeScrollPanel.setMinimumSize(new Dimension(50, 50));
+
+                        //---- zdrojeTable ----
+                        zdrojeTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                        zdrojeTable.setPreferredSize(new Dimension(50, 50));
+                        zdrojeScrollPanel.setViewportView(zdrojeTable);
+                    }
+                    zdrojePanel.add(zdrojeScrollPanel, BorderLayout.CENTER);
+                }
+                dashboardMapPanel.add(zdrojePanel);
+
+                //======== spotrebaMainPanel ========
+                {
+                    spotrebaMainPanel.setMinimumSize(new Dimension(50, 50));
+                    spotrebaMainPanel.setPreferredSize(new Dimension(50, 50));
+                    spotrebaMainPanel.setLayout(new BoxLayout(spotrebaMainPanel, BoxLayout.Y_AXIS));
+
+                    //======== scrollPane6 ========
+                    {
+                        scrollPane6.setPreferredSize(new Dimension(23, 23));
+
+                        //======== palivoPanel ========
+                        {
+                            palivoPanel.setBorder(new TitledBorder("Palivo"));
+                            palivoPanel.setPreferredSize(new Dimension(100, 200));
+                            palivoPanel.setMinimumSize(new Dimension(100, 200));
+                            palivoPanel.setLayout(new FormLayout(
+                                "default, $lcgap, 53dlu, $lcgap, 64dlu",
+                                "fill:default, 6*($lgap, default)"));
+
+                            //---- label12 ----
+                            label12.setText("Celkem paliva");
+                            label12.setLabelFor(palivoCelkem);
+                            label12.setHorizontalAlignment(SwingConstants.CENTER);
+                            label12.setFocusable(false);
+                            palivoPanel.add(label12, CC.xy(1, 3));
+
+                            //---- palivoCelkem ----
+                            palivoCelkem.setEditable(false);
+                            palivoCelkem.setColumns(5);
+                            palivoPanel.add(palivoCelkem, CC.xy(3, 3));
+
+                            //---- palivoCasCelkem ----
+                            palivoCasCelkem.setEditable(false);
+                            palivoCasCelkem.setColumns(5);
+                            palivoPanel.add(palivoCasCelkem, CC.xy(5, 3));
+
+                            //---- label13 ----
+                            label13.setText("Spot\u0159eba za sekundu");
+                            label13.setLabelFor(palivoSpotreba);
+                            label13.setHorizontalAlignment(SwingConstants.CENTER);
+                            palivoPanel.add(label13, CC.xy(1, 5));
+
+                            //---- palivoSpotreba ----
+                            palivoSpotreba.setEditable(false);
+                            palivoSpotreba.setColumns(5);
+                            palivoPanel.add(palivoSpotreba, CC.xy(3, 5));
+
+                            //---- label14 ----
+                            label14.setText("Po\u010d\u00edt\u00e1n\u00ed spot\u0159eby");
+                            label14.setHorizontalAlignment(SwingConstants.CENTER);
+                            palivoPanel.add(label14, CC.xy(1, 7));
+                            palivoPanel.add(palivoTimerEnabled, CC.xy(3, 7));
+
+                            //---- label9 ----
+                            label9.setText("P\u0159idat palivo");
+                            label9.setHorizontalAlignment(SwingConstants.CENTER);
+                            palivoPanel.add(label9, CC.xy(1, 9));
+
+                            //---- addPalivoSpiner ----
+                            addPalivoSpiner.setModel(new SpinnerNumberModel(0L, null, null, 1L));
+                            palivoPanel.add(addPalivoSpiner, CC.xy(3, 9));
+
+                            //---- addPalivoButton ----
+                            addPalivoButton.setText("P\u0159idat");
+                            addPalivoButton.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    button1ActionPerformed(e);
+                                }
+                            });
+                            palivoPanel.add(addPalivoButton, CC.xy(5, 9));
+                        }
+                        scrollPane6.setViewportView(palivoPanel);
+                    }
+                    spotrebaMainPanel.add(scrollPane6);
+
+                    //======== scrollPane5 ========
+                    {
+                        scrollPane5.setPreferredSize(new Dimension(23, 23));
+
+                        //======== spotrebaPanel ========
+                        {
+                            spotrebaPanel.setBorder(new TitledBorder("Spotreba"));
+                            spotrebaPanel.setPreferredSize(new Dimension(100, 200));
+                            spotrebaPanel.setMinimumSize(new Dimension(100, 200));
+                            spotrebaPanel.setRequestFocusEnabled(false);
+                            spotrebaPanel.setLayout(new FormLayout(
+                                "6*(default, $lcgap), default",
+                                "fill:default, 6*($lgap, default)"));
+
+                            //---- label6 ----
+                            label6.setText("Vykon");
+                            label6.setHorizontalAlignment(SwingConstants.CENTER);
+                            spotrebaPanel.add(label6, CC.xy(3, 1));
+
+                            //---- label7 ----
+                            label7.setText("Spotreba");
+                            label7.setHorizontalAlignment(SwingConstants.CENTER);
+                            spotrebaPanel.add(label7, CC.xy(7, 1));
+
+                            //---- label2 ----
+                            label2.setText("Ovladani");
+                            spotrebaPanel.add(label2, CC.xy(13, 1));
+
+                            //---- label1 ----
+                            label1.setText("Celkem");
+                            label1.setLabelFor(vykonCelkem);
+                            label1.setHorizontalAlignment(SwingConstants.CENTER);
+                            label1.setFocusable(false);
+                            spotrebaPanel.add(label1, CC.xy(1, 3));
+
+                            //---- vykonCelkem ----
+                            vykonCelkem.setEditable(false);
+                            vykonCelkem.setColumns(5);
+                            spotrebaPanel.add(vykonCelkem, CC.xy(3, 3));
+
+                            //---- spotrebaCelkem ----
+                            spotrebaCelkem.setEditable(false);
+                            spotrebaCelkem.setColumns(5);
+                            spotrebaPanel.add(spotrebaCelkem, CC.xy(7, 3));
+
+                            //---- label3 ----
+                            label3.setText("Motory");
+                            label3.setLabelFor(vykonMotory);
+                            label3.setHorizontalAlignment(SwingConstants.CENTER);
+                            spotrebaPanel.add(label3, CC.xy(1, 5));
+
+                            //---- vykonMotory ----
+                            vykonMotory.setColumns(5);
+                            vykonMotory.setEditable(false);
+                            spotrebaPanel.add(vykonMotory, CC.xy(3, 5));
+
+                            //---- spotrebaMotory ----
+                            spotrebaMotory.setEditable(false);
+                            spotrebaMotory.setColumns(5);
+                            spotrebaPanel.add(spotrebaMotory, CC.xy(7, 5));
+
+                            //---- motoryZvisit ----
+                            motoryZvisit.setText("+");
+                            motoryZvisit.setEnabled(false);
+                            motoryZvisit.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    motoryZvisitActionPerformed(e);
+                                }
+                            });
+                            spotrebaPanel.add(motoryZvisit, CC.xy(9, 5));
+
+                            //---- motorySnizit ----
+                            motorySnizit.setText("-");
+                            motorySnizit.setEnabled(false);
+                            motorySnizit.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    motorySnizitActionPerformed(e);
+                                }
+                            });
+                            spotrebaPanel.add(motorySnizit, CC.xy(11, 5));
+                            spotrebaPanel.add(checkBox2, CC.xy(13, 5));
+
+                            //---- label4 ----
+                            label4.setText("Ruzne");
+                            label4.setLabelFor(vykonScanery);
+                            label4.setHorizontalAlignment(SwingConstants.CENTER);
+                            spotrebaPanel.add(label4, CC.xy(1, 7));
+
+                            //---- vykonScanery ----
+                            vykonScanery.setColumns(5);
+                            vykonScanery.setEditable(false);
+                            spotrebaPanel.add(vykonScanery, CC.xy(3, 7));
+
+                            //---- spotrebaScanery ----
+                            spotrebaScanery.setEditable(false);
+                            spotrebaPanel.add(spotrebaScanery, CC.xy(7, 7));
+
+                            //---- scaneryZvisit ----
+                            scaneryZvisit.setText("+");
+                            scaneryZvisit.setEnabled(false);
+                            scaneryZvisit.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    scaneryZvisitActionPerformed(e);
+                                }
+                            });
+                            spotrebaPanel.add(scaneryZvisit, CC.xy(9, 7));
+
+                            //---- scanerySnizit ----
+                            scanerySnizit.setText("-");
+                            scanerySnizit.setEnabled(false);
+                            scanerySnizit.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    scanerySnizitActionPerformed(e);
+                                }
+                            });
+                            spotrebaPanel.add(scanerySnizit, CC.xy(11, 7));
+                            spotrebaPanel.add(checkBox3, CC.xy(13, 7));
+
+                            //---- label5 ----
+                            label5.setText("Zbrane");
+                            label5.setLabelFor(vykonZbrane);
+                            label5.setHorizontalAlignment(SwingConstants.CENTER);
+                            spotrebaPanel.add(label5, CC.xy(1, 9));
+
+                            //---- vykonZbrane ----
+                            vykonZbrane.setColumns(5);
+                            vykonZbrane.setEditable(false);
+                            spotrebaPanel.add(vykonZbrane, CC.xy(3, 9));
+
+                            //---- spotrebaZbrane ----
+                            spotrebaZbrane.setEditable(false);
+                            spotrebaPanel.add(spotrebaZbrane, CC.xy(7, 9));
+
+                            //---- zbraneZvisit ----
+                            zbraneZvisit.setText("+");
+                            zbraneZvisit.setEnabled(false);
+                            zbraneZvisit.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    zbraneZvisitActionPerformed(e);
+                                }
+                            });
+                            spotrebaPanel.add(zbraneZvisit, CC.xy(9, 9));
+
+                            //---- zbraneSnizit ----
+                            zbraneSnizit.setText("-");
+                            zbraneSnizit.setEnabled(false);
+                            zbraneSnizit.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    zbraneSnizitActionPerformed(e);
+                                }
+                            });
+                            spotrebaPanel.add(zbraneSnizit, CC.xy(11, 9));
+                            spotrebaPanel.add(checkBox4, CC.xy(13, 9));
+
+                            //---- label8 ----
+                            label8.setText("Stity");
+                            label8.setLabelFor(vykonStity);
+                            label8.setHorizontalAlignment(SwingConstants.CENTER);
+                            spotrebaPanel.add(label8, CC.xy(1, 11));
+
+                            //---- vykonStity ----
+                            vykonStity.setColumns(5);
+                            vykonStity.setEditable(false);
+                            spotrebaPanel.add(vykonStity, CC.xy(3, 11));
+
+                            //---- spotrebaStity ----
+                            spotrebaStity.setEditable(false);
+                            spotrebaPanel.add(spotrebaStity, CC.xy(7, 11));
+
+                            //---- stityZvisit ----
+                            stityZvisit.setText("+");
+                            stityZvisit.setEnabled(false);
+                            stityZvisit.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    stityZvisitActionPerformed(e);
+                                }
+                            });
+                            spotrebaPanel.add(stityZvisit, CC.xy(9, 11));
+
+                            //---- stitySnizit ----
+                            stitySnizit.setText("-");
+                            stitySnizit.setEnabled(false);
+                            stitySnizit.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    stitySnizitActionPerformed(e);
+                                }
+                            });
+                            spotrebaPanel.add(stitySnizit, CC.xy(11, 11));
+                            spotrebaPanel.add(checkBox5, CC.xy(13, 11));
+
+                            //---- label15 ----
+                            label15.setText("Po\u010d\u00edt\u00e1n\u00ed spot\u0159eby");
+                            label15.setHorizontalAlignment(SwingConstants.CENTER);
+                            spotrebaPanel.add(label15, CC.xy(1, 13));
+                            spotrebaPanel.add(vykonSpotrebaEnable, CC.xy(3, 13));
+                        }
+                        scrollPane5.setViewportView(spotrebaPanel);
+                    }
+                    spotrebaMainPanel.add(scrollPane5);
+                }
+                dashboardMapPanel.add(spotrebaMainPanel);
             }
-            tabbedPane1.addTab("\u0160t\u00edty", stityPanel);
-
-            //======== scaneryPanel ========
-            {
-                scaneryPanel.setBorder(new TitledBorder("Ruzne"));
-                scaneryPanel.setLayout(new BorderLayout());
-
-                //======== stityToolbar2 ========
-                {
-                    stityToolbar2.setFloatable(false);
-
-                    //---- zvysScanerButton ----
-                    zvysScanerButton.setText("+ uroven");
-                    zvysScanerButton.setMinimumSize(new Dimension(100, 25));
-                    zvysScanerButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            zvysScanerButtonActionPerformed(e);
-                        }
-                    });
-                    stityToolbar2.add(zvysScanerButton);
-
-                    //---- snizScanerUroven ----
-                    snizScanerUroven.setText("- uroven");
-                    snizScanerUroven.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            snizScanerUrovenActionPerformed(e);
-                        }
-                    });
-                    stityToolbar2.add(snizScanerUroven);
-
-                    //---- scanerUrovne ----
-                    scanerUrovne.setText("Urovne");
-                    scanerUrovne.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            scanerUrovneActionPerformed(e);
-                        }
-                    });
-                    stityToolbar2.add(scanerUrovne);
-
-                    //---- pridatScanerButton2 ----
-                    pridatScanerButton2.setText("Pridat");
-                    pridatScanerButton2.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            pridatScanerButton2ActionPerformed(e);
-                        }
-                    });
-                    stityToolbar2.add(pridatScanerButton2);
-
-                    //---- smazatScanerButton2 ----
-                    smazatScanerButton2.setText("Smazat");
-                    smazatScanerButton2.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            smazatScanerButton2ActionPerformed(e);
-                        }
-                    });
-                    stityToolbar2.add(smazatScanerButton2);
-                }
-                scaneryPanel.add(stityToolbar2, BorderLayout.PAGE_START);
-
-                //======== scrollPane2 ========
-                {
-
-                    //---- scaneryTable ----
-                    scaneryTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-                    scrollPane2.setViewportView(scaneryTable);
-                }
-                scaneryPanel.add(scrollPane2, BorderLayout.CENTER);
-            }
-            tabbedPane1.addTab("Scanery", scaneryPanel);
-
-            //======== motoryPanel ========
-            {
-                motoryPanel.setBorder(new TitledBorder("Motory"));
-                motoryPanel.setLayout(new BorderLayout());
-
-                //======== stityToolbar4 ========
-                {
-                    stityToolbar4.setFloatable(false);
-
-                    //---- zvysMotorButton ----
-                    zvysMotorButton.setText("+ uroven");
-                    zvysMotorButton.setMinimumSize(new Dimension(100, 25));
-                    zvysMotorButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            zvysMotorButtonActionPerformed(e);
-                        }
-                    });
-                    stityToolbar4.add(zvysMotorButton);
-
-                    //---- snizMotorUroven ----
-                    snizMotorUroven.setText("- uroven");
-                    snizMotorUroven.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            snizMotorUrovenActionPerformed(e);
-                        }
-                    });
-                    stityToolbar4.add(snizMotorUroven);
-
-                    //---- motorUrovne ----
-                    motorUrovne.setText("Urovne");
-                    motorUrovne.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            motorUrovneActionPerformed(e);
-                        }
-                    });
-                    stityToolbar4.add(motorUrovne);
-
-                    //---- pridatMotorButton ----
-                    pridatMotorButton.setText("Pridat");
-                    pridatMotorButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            pridatMotorButtonActionPerformed(e);
-                        }
-                    });
-                    stityToolbar4.add(pridatMotorButton);
-
-                    //---- smazatMotorButton ----
-                    smazatMotorButton.setText("Smazat");
-                    smazatMotorButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            smazatMotorButtonActionPerformed(e);
-                        }
-                    });
-                    stityToolbar4.add(smazatMotorButton);
-                }
-                motoryPanel.add(stityToolbar4, BorderLayout.PAGE_START);
-
-                //======== scrollPane4 ========
-                {
-
-                    //---- motoryTable ----
-                    motoryTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-                    scrollPane4.setViewportView(motoryTable);
-                }
-                motoryPanel.add(scrollPane4, BorderLayout.CENTER);
-            }
-            tabbedPane1.addTab("Motory", motoryPanel);
-
-            //======== zbranePanel ========
-            {
-                zbranePanel.setBorder(new TitledBorder("Zbran\u011b"));
-                zbranePanel.setLayout(new BorderLayout());
-
-                //======== stityToolbar3 ========
-                {
-                    stityToolbar3.setFloatable(false);
-
-                    //---- zvysZbranButton ----
-                    zvysZbranButton.setText("+ uroven");
-                    zvysZbranButton.setMinimumSize(new Dimension(100, 25));
-                    zvysZbranButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            zvysZbranButtonActionPerformed(e);
-                        }
-                    });
-                    stityToolbar3.add(zvysZbranButton);
-
-                    //---- snizZbranUroven ----
-                    snizZbranUroven.setText("- uroven");
-                    snizZbranUroven.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            snizZbranUrovenActionPerformed(e);
-                        }
-                    });
-                    stityToolbar3.add(snizZbranUroven);
-
-                    //---- zbranUrovne ----
-                    zbranUrovne.setText("Urovne");
-                    zbranUrovne.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            zbranUrovneActionPerformed(e);
-                        }
-                    });
-                    stityToolbar3.add(zbranUrovne);
-
-                    //---- pridatZbranButton ----
-                    pridatZbranButton.setText("Pridat");
-                    pridatZbranButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            pridatZbranButtonActionPerformed(e);
-                        }
-                    });
-                    stityToolbar3.add(pridatZbranButton);
-
-                    //---- smazatZbranButton ----
-                    smazatZbranButton.setText("Smazat");
-                    smazatZbranButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            smazatZbranButtonActionPerformed(e);
-                        }
-                    });
-                    stityToolbar3.add(smazatZbranButton);
-                }
-                zbranePanel.add(stityToolbar3, BorderLayout.PAGE_START);
-
-                //======== scrollPane3 ========
-                {
-
-                    //---- zbraneTable ----
-                    zbraneTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-                    scrollPane3.setViewportView(zbraneTable);
-                }
-                zbranePanel.add(scrollPane3, BorderLayout.CENTER);
-            }
-            tabbedPane1.addTab("Zbran\u011b", zbranePanel);
-
-            //======== zdrojePanel ========
-            {
-                zdrojePanel.setBorder(new TitledBorder("Zdroje"));
-                zdrojePanel.setLayout(new BorderLayout());
-
-                //======== zdrojeToolbar ========
-                {
-                    zdrojeToolbar.setFloatable(false);
-
-                    //---- zdrojPridat ----
-                    zdrojPridat.setText("Pridat");
-                    zdrojPridat.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            zdrojPridatActionPerformed(e);
-                        }
-                    });
-                    zdrojeToolbar.add(zdrojPridat);
-
-                    //---- zdrojOdebrat ----
-                    zdrojOdebrat.setText("Smazat");
-                    zdrojOdebrat.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            zdrojOdebratActionPerformed(e);
-                        }
-                    });
-                    zdrojeToolbar.add(zdrojOdebrat);
-                }
-                zdrojePanel.add(zdrojeToolbar, BorderLayout.NORTH);
-
-                //======== zdrojeScrollPanel ========
-                {
-
-                    //---- zdrojeTable ----
-                    zdrojeTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-                    zdrojeScrollPanel.setViewportView(zdrojeTable);
-                }
-                zdrojePanel.add(zdrojeScrollPanel, BorderLayout.CENTER);
-            }
-            tabbedPane1.addTab("Zdroje", zdrojePanel);
-
-            //======== spotrebaMainPanel ========
-            {
-                spotrebaMainPanel.setLayout(new BorderLayout());
-
-                //======== spotrebaPanel ========
-                {
-                    spotrebaPanel.setBorder(new TitledBorder("Spotreba"));
-                    spotrebaPanel.setLayout(new FormLayout(
-                        "6*(default, $lcgap), default",
-                        "fill:default, 6*($lgap, default)"));
-
-                    //---- label6 ----
-                    label6.setText("Vykon");
-                    label6.setHorizontalAlignment(SwingConstants.CENTER);
-                    spotrebaPanel.add(label6, CC.xy(3, 1));
-
-                    //---- label7 ----
-                    label7.setText("Spotreba");
-                    label7.setHorizontalAlignment(SwingConstants.CENTER);
-                    spotrebaPanel.add(label7, CC.xy(7, 1));
-
-                    //---- label2 ----
-                    label2.setText("Ovladani");
-                    spotrebaPanel.add(label2, CC.xy(13, 1));
-
-                    //---- label1 ----
-                    label1.setText("Celkem");
-                    label1.setLabelFor(vykonCelkem);
-                    label1.setHorizontalAlignment(SwingConstants.CENTER);
-                    label1.setFocusable(false);
-                    spotrebaPanel.add(label1, CC.xy(1, 3));
-
-                    //---- vykonCelkem ----
-                    vykonCelkem.setEditable(false);
-                    vykonCelkem.setColumns(5);
-                    spotrebaPanel.add(vykonCelkem, CC.xy(3, 3));
-
-                    //---- spotrebaCelkem ----
-                    spotrebaCelkem.setEditable(false);
-                    spotrebaCelkem.setColumns(5);
-                    spotrebaPanel.add(spotrebaCelkem, CC.xy(7, 3));
-
-                    //---- label3 ----
-                    label3.setText("Motory");
-                    label3.setLabelFor(vykonMotory);
-                    label3.setHorizontalAlignment(SwingConstants.CENTER);
-                    spotrebaPanel.add(label3, CC.xy(1, 5));
-
-                    //---- vykonMotory ----
-                    vykonMotory.setColumns(5);
-                    vykonMotory.setEditable(false);
-                    spotrebaPanel.add(vykonMotory, CC.xy(3, 5));
-
-                    //---- spotrebaMotory ----
-                    spotrebaMotory.setEditable(false);
-                    spotrebaMotory.setColumns(5);
-                    spotrebaPanel.add(spotrebaMotory, CC.xy(7, 5));
-
-                    //---- motoryZvisit ----
-                    motoryZvisit.setText("+");
-                    motoryZvisit.setEnabled(false);
-                    motoryZvisit.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            motoryZvisitActionPerformed(e);
-                        }
-                    });
-                    spotrebaPanel.add(motoryZvisit, CC.xy(9, 5));
-
-                    //---- motorySnizit ----
-                    motorySnizit.setText("-");
-                    motorySnizit.setEnabled(false);
-                    motorySnizit.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            motorySnizitActionPerformed(e);
-                        }
-                    });
-                    spotrebaPanel.add(motorySnizit, CC.xy(11, 5));
-                    spotrebaPanel.add(checkBox2, CC.xy(13, 5));
-
-                    //---- label4 ----
-                    label4.setText("Ruzne");
-                    label4.setLabelFor(vykonScanery);
-                    label4.setHorizontalAlignment(SwingConstants.CENTER);
-                    spotrebaPanel.add(label4, CC.xy(1, 7));
-
-                    //---- vykonScanery ----
-                    vykonScanery.setColumns(5);
-                    vykonScanery.setEditable(false);
-                    spotrebaPanel.add(vykonScanery, CC.xy(3, 7));
-
-                    //---- spotrebaScanery ----
-                    spotrebaScanery.setEditable(false);
-                    spotrebaPanel.add(spotrebaScanery, CC.xy(7, 7));
-
-                    //---- scaneryZvisit ----
-                    scaneryZvisit.setText("+");
-                    scaneryZvisit.setEnabled(false);
-                    scaneryZvisit.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            scaneryZvisitActionPerformed(e);
-                        }
-                    });
-                    spotrebaPanel.add(scaneryZvisit, CC.xy(9, 7));
-
-                    //---- scanerySnizit ----
-                    scanerySnizit.setText("-");
-                    scanerySnizit.setEnabled(false);
-                    scanerySnizit.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            scanerySnizitActionPerformed(e);
-                        }
-                    });
-                    spotrebaPanel.add(scanerySnizit, CC.xy(11, 7));
-                    spotrebaPanel.add(checkBox3, CC.xy(13, 7));
-
-                    //---- label5 ----
-                    label5.setText("Zbrane");
-                    label5.setLabelFor(vykonZbrane);
-                    label5.setHorizontalAlignment(SwingConstants.CENTER);
-                    spotrebaPanel.add(label5, CC.xy(1, 9));
-
-                    //---- vykonZbrane ----
-                    vykonZbrane.setColumns(5);
-                    vykonZbrane.setEditable(false);
-                    spotrebaPanel.add(vykonZbrane, CC.xy(3, 9));
-
-                    //---- spotrebaZbrane ----
-                    spotrebaZbrane.setEditable(false);
-                    spotrebaPanel.add(spotrebaZbrane, CC.xy(7, 9));
-
-                    //---- zbraneZvisit ----
-                    zbraneZvisit.setText("+");
-                    zbraneZvisit.setEnabled(false);
-                    zbraneZvisit.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            zbraneZvisitActionPerformed(e);
-                        }
-                    });
-                    spotrebaPanel.add(zbraneZvisit, CC.xy(9, 9));
-
-                    //---- zbraneSnizit ----
-                    zbraneSnizit.setText("-");
-                    zbraneSnizit.setEnabled(false);
-                    zbraneSnizit.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            zbraneSnizitActionPerformed(e);
-                        }
-                    });
-                    spotrebaPanel.add(zbraneSnizit, CC.xy(11, 9));
-                    spotrebaPanel.add(checkBox4, CC.xy(13, 9));
-
-                    //---- label8 ----
-                    label8.setText("Stity");
-                    label8.setLabelFor(vykonStity);
-                    label8.setHorizontalAlignment(SwingConstants.CENTER);
-                    spotrebaPanel.add(label8, CC.xy(1, 11));
-
-                    //---- vykonStity ----
-                    vykonStity.setColumns(5);
-                    vykonStity.setEditable(false);
-                    spotrebaPanel.add(vykonStity, CC.xy(3, 11));
-
-                    //---- spotrebaStity ----
-                    spotrebaStity.setEditable(false);
-                    spotrebaPanel.add(spotrebaStity, CC.xy(7, 11));
-
-                    //---- stityZvisit ----
-                    stityZvisit.setText("+");
-                    stityZvisit.setEnabled(false);
-                    stityZvisit.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            stityZvisitActionPerformed(e);
-                        }
-                    });
-                    spotrebaPanel.add(stityZvisit, CC.xy(9, 11));
-
-                    //---- stitySnizit ----
-                    stitySnizit.setText("-");
-                    stitySnizit.setEnabled(false);
-                    stitySnizit.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            stitySnizitActionPerformed(e);
-                        }
-                    });
-                    spotrebaPanel.add(stitySnizit, CC.xy(11, 11));
-                    spotrebaPanel.add(checkBox5, CC.xy(13, 11));
-
-                    //---- label15 ----
-                    label15.setText("Po\u010d\u00edt\u00e1n\u00ed spot\u0159eby");
-                    label15.setHorizontalAlignment(SwingConstants.CENTER);
-                    spotrebaPanel.add(label15, CC.xy(1, 13));
-                    spotrebaPanel.add(vykonSpotrebaEnable, CC.xy(3, 13));
-                }
-                spotrebaMainPanel.add(spotrebaPanel, BorderLayout.WEST);
-
-                //======== palivoPanel ========
-                {
-                    palivoPanel.setBorder(new TitledBorder("Palivo"));
-                    palivoPanel.setLayout(new FormLayout(
-                        "default, $lcgap, 53dlu, $lcgap, 64dlu",
-                        "fill:default, 6*($lgap, default)"));
-
-                    //---- label12 ----
-                    label12.setText("Celkem paliva");
-                    label12.setLabelFor(palivoCelkem);
-                    label12.setHorizontalAlignment(SwingConstants.CENTER);
-                    label12.setFocusable(false);
-                    palivoPanel.add(label12, CC.xy(1, 3));
-
-                    //---- palivoCelkem ----
-                    palivoCelkem.setEditable(false);
-                    palivoCelkem.setColumns(5);
-                    palivoPanel.add(palivoCelkem, CC.xy(3, 3));
-
-                    //---- palivoCasCelkem ----
-                    palivoCasCelkem.setEditable(false);
-                    palivoCasCelkem.setColumns(5);
-                    palivoPanel.add(palivoCasCelkem, CC.xy(5, 3));
-
-                    //---- label13 ----
-                    label13.setText("Spot\u0159eba za sekundu");
-                    label13.setLabelFor(palivoSpotreba);
-                    label13.setHorizontalAlignment(SwingConstants.CENTER);
-                    palivoPanel.add(label13, CC.xy(1, 5));
-
-                    //---- palivoSpotreba ----
-                    palivoSpotreba.setEditable(false);
-                    palivoSpotreba.setColumns(5);
-                    palivoPanel.add(palivoSpotreba, CC.xy(3, 5));
-
-                    //---- label14 ----
-                    label14.setText("Po\u010d\u00edt\u00e1n\u00ed spot\u0159eby");
-                    label14.setHorizontalAlignment(SwingConstants.CENTER);
-                    palivoPanel.add(label14, CC.xy(1, 7));
-                    palivoPanel.add(palivoTimerEnabled, CC.xy(3, 7));
-
-                    //---- label9 ----
-                    label9.setText("P\u0159idat palivo");
-                    label9.setHorizontalAlignment(SwingConstants.CENTER);
-                    palivoPanel.add(label9, CC.xy(1, 9));
-
-                    //---- addPalivoSpiner ----
-                    addPalivoSpiner.setModel(new SpinnerNumberModel(0L, null, null, 1L));
-                    palivoPanel.add(addPalivoSpiner, CC.xy(3, 9));
-
-                    //---- addPalivoButton ----
-                    addPalivoButton.setText("P\u0159idat");
-                    addPalivoButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            button1ActionPerformed(e);
-                        }
-                    });
-                    palivoPanel.add(addPalivoButton, CC.xy(5, 9));
-                }
-                spotrebaMainPanel.add(palivoPanel, BorderLayout.CENTER);
-            }
-            tabbedPane1.addTab("Spot\u0159eba", spotrebaMainPanel);
+            tabbedPane1.addTab("Ovladani", dashboardMapPanel);
 
             //======== serverPanel ========
             {
@@ -1880,8 +1947,9 @@ public class Application extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner non-commercial license
+    // Generated using JFormDesigner Evaluation license - Alen Takoka
     private JTabbedPane tabbedPane1;
+    private JPanel dashboardMapPanel;
     private JPanel stityPanel;
     private JToolBar stityToolbar;
     private JButton zvysStitButton;
@@ -1925,6 +1993,19 @@ public class Application extends JFrame {
     private JScrollPane zdrojeScrollPanel;
     private JTable zdrojeTable;
     private JPanel spotrebaMainPanel;
+    private JScrollPane scrollPane6;
+    private JPanel palivoPanel;
+    private JLabel label12;
+    private JTextField palivoCelkem;
+    private JTextField palivoCasCelkem;
+    private JLabel label13;
+    private JTextField palivoSpotreba;
+    private JLabel label14;
+    private JCheckBox palivoTimerEnabled;
+    private JLabel label9;
+    private JSpinner addPalivoSpiner;
+    private JButton addPalivoButton;
+    private JScrollPane scrollPane5;
     private JPanel spotrebaPanel;
     private JLabel label6;
     private JLabel label7;
@@ -1958,17 +2039,6 @@ public class Application extends JFrame {
     private JCheckBox checkBox5;
     private JLabel label15;
     private JCheckBox vykonSpotrebaEnable;
-    private JPanel palivoPanel;
-    private JLabel label12;
-    private JTextField palivoCelkem;
-    private JTextField palivoCasCelkem;
-    private JLabel label13;
-    private JTextField palivoSpotreba;
-    private JLabel label14;
-    private JCheckBox palivoTimerEnabled;
-    private JLabel label9;
-    private JSpinner addPalivoSpiner;
-    private JButton addPalivoButton;
     private JPanel serverPanel;
     private JPanel clientPanel;
     private JScrollPane clinetScrollPane;
