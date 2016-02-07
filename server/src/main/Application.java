@@ -646,7 +646,9 @@ public class Application extends JFrame {
 
                         //---- stityTable ----
                         stityTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-                        stityTable.setPreferredSize(new Dimension(50, 50));
+                        stityTable.setOpaque(false);
+                        stityTable.setMinimumSize(new Dimension(180, 180));
+                        stityTable.setFillsViewportHeight(true);
                         scrollPane1.setViewportView(stityTable);
                     }
                     stityPanel.add(scrollPane1, BorderLayout.CENTER);
@@ -724,8 +726,9 @@ public class Application extends JFrame {
 
                         //---- scaneryTable ----
                         scaneryTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-                        scaneryTable.setPreferredSize(new Dimension(50, 50));
-                        scaneryTable.setPreferredScrollableViewportSize(new Dimension(50, 40));
+                        scaneryTable.setOpaque(false);
+                        scaneryTable.setMinimumSize(new Dimension(180, 180));
+                        scaneryTable.setFillsViewportHeight(true);
                         scrollPane2.setViewportView(scaneryTable);
                     }
                     scaneryPanel.add(scrollPane2, BorderLayout.CENTER);
@@ -803,7 +806,9 @@ public class Application extends JFrame {
 
                         //---- motoryTable ----
                         motoryTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-                        motoryTable.setPreferredSize(new Dimension(50, 50));
+                        motoryTable.setOpaque(false);
+                        motoryTable.setMinimumSize(new Dimension(180, 180));
+                        motoryTable.setFillsViewportHeight(true);
                         scrollPane4.setViewportView(motoryTable);
                     }
                     motoryPanel.add(scrollPane4, BorderLayout.CENTER);
@@ -881,7 +886,9 @@ public class Application extends JFrame {
 
                         //---- zbraneTable ----
                         zbraneTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-                        zbraneTable.setPreferredSize(new Dimension(50, 50));
+                        zbraneTable.setOpaque(false);
+                        zbraneTable.setMinimumSize(new Dimension(180, 180));
+                        zbraneTable.setFillsViewportHeight(true);
                         scrollPane3.setViewportView(zbraneTable);
                     }
                     zbranePanel.add(scrollPane3, BorderLayout.CENTER);
@@ -928,7 +935,9 @@ public class Application extends JFrame {
 
                         //---- zdrojeTable ----
                         zdrojeTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-                        zdrojeTable.setPreferredSize(new Dimension(50, 50));
+                        zdrojeTable.setOpaque(false);
+                        zdrojeTable.setMinimumSize(new Dimension(180, 180));
+                        zdrojeTable.setFillsViewportHeight(true);
                         zdrojeScrollPanel.setViewportView(zdrojeTable);
                     }
                     zdrojePanel.add(zdrojeScrollPanel, BorderLayout.CENTER);

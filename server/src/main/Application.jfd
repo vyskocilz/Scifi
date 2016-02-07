@@ -288,11 +288,19 @@
                  <int>0</int>
                 </void>
                 <void method="setProperty">
-                 <string>preferredSize</string>
+                 <string>opaque</string>
+                 <boolean>false</boolean>
+                </void>
+                <void method="setProperty">
+                 <string>minimumSize</string>
                  <object class="java.awt.Dimension">
-                  <int>50</int>
-                  <int>50</int>
+                  <int>180</int>
+                  <int>180</int>
                  </object>
+                </void>
+                <void method="setProperty">
+                 <string>fillsViewportHeight</string>
+                 <boolean>true</boolean>
                 </void>
                 <void property="name">
                  <string>stityTable</string>
@@ -496,18 +504,19 @@
                  <int>0</int>
                 </void>
                 <void method="setProperty">
-                 <string>preferredSize</string>
+                 <string>opaque</string>
+                 <boolean>false</boolean>
+                </void>
+                <void method="setProperty">
+                 <string>minimumSize</string>
                  <object class="java.awt.Dimension">
-                  <int>50</int>
-                  <int>50</int>
+                  <int>180</int>
+                  <int>180</int>
                  </object>
                 </void>
                 <void method="setProperty">
-                 <string>preferredScrollableViewportSize</string>
-                 <object class="java.awt.Dimension">
-                  <int>50</int>
-                  <int>40</int>
-                 </object>
+                 <string>fillsViewportHeight</string>
+                 <boolean>true</boolean>
                 </void>
                 <void property="name">
                  <string>scaneryTable</string>
@@ -711,11 +720,19 @@
                  <int>0</int>
                 </void>
                 <void method="setProperty">
-                 <string>preferredSize</string>
+                 <string>opaque</string>
+                 <boolean>false</boolean>
+                </void>
+                <void method="setProperty">
+                 <string>minimumSize</string>
                  <object class="java.awt.Dimension">
-                  <int>50</int>
-                  <int>50</int>
+                  <int>180</int>
+                  <int>180</int>
                  </object>
+                </void>
+                <void method="setProperty">
+                 <string>fillsViewportHeight</string>
+                 <boolean>true</boolean>
                 </void>
                 <void property="name">
                  <string>motoryTable</string>
@@ -919,11 +936,19 @@
                  <int>0</int>
                 </void>
                 <void method="setProperty">
-                 <string>preferredSize</string>
+                 <string>opaque</string>
+                 <boolean>false</boolean>
+                </void>
+                <void method="setProperty">
+                 <string>minimumSize</string>
                  <object class="java.awt.Dimension">
-                  <int>50</int>
-                  <int>50</int>
+                  <int>180</int>
+                  <int>180</int>
                  </object>
+                </void>
+                <void method="setProperty">
+                 <string>fillsViewportHeight</string>
+                 <boolean>true</boolean>
                 </void>
                 <void property="name">
                  <string>zbraneTable</string>
@@ -1063,11 +1088,19 @@
                  <int>0</int>
                 </void>
                 <void method="setProperty">
-                 <string>preferredSize</string>
+                 <string>opaque</string>
+                 <boolean>false</boolean>
+                </void>
+                <void method="setProperty">
+                 <string>minimumSize</string>
                  <object class="java.awt.Dimension">
-                  <int>50</int>
-                  <int>50</int>
+                  <int>180</int>
+                  <int>180</int>
                  </object>
+                </void>
+                <void method="setProperty">
+                 <string>fillsViewportHeight</string>
+                 <boolean>true</boolean>
                 </void>
                 <void property="name">
                  <string>zdrojeTable</string>
