@@ -3776,8 +3776,8 @@
       <void method="setProperty">
        <string>location</string>
        <object class="java.awt.Point">
-        <int>395</int>
-        <int>570</int>
+        <int>390</int>
+        <int>610</int>
        </object>
       </void>
      </object>
@@ -3885,7 +3885,7 @@
        <string>location</string>
        <object class="java.awt.Point">
         <int>190</int>
-        <int>660</int>
+        <int>665</int>
        </object>
       </void>
      </object>
@@ -4267,10 +4267,6 @@
            </object>
           </void>
          </array>
-        </void>
-        <void method="setProperty">
-         <string>editable</string>
-         <boolean>false</boolean>
         </void>
        </object>
       </void>

@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
   <artifact type="war" name="scifi">
     <output-path>$PROJECT_DIR$/out/artifacts/scifi</output-path>
-    <root id="archive" name="scifi_lod_v6.zip">
+    <root id="archive" name="scifi-lod-v7.zip">
       <element id="directory" name="client">
         <element id="artifact" artifact-name="client:jar" />
         <element id="file-copy" path="$PROJECT_DIR$/client.properties" />

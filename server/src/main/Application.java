@@ -385,7 +385,7 @@ public class Application extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Alen Takoka
+        // Generated using JFormDesigner Evaluation license - Lajdak Ani nevim kde
         DefaultComponentFactory compFactory = DefaultComponentFactory.getInstance();
         tabbedPane1 = new JTabbedPane();
         dashboardMapPanel = new JPanel();
@@ -1631,7 +1631,6 @@ public class Application extends JFrame {
         {
             JTableBinding binding = SwingBindings.createJTableBinding(UpdateStrategy.READ_WRITE,
                 stityListModel, stityTable);
-            binding.setEditable(false);
             binding.addColumnBinding(BeanProperty.create("nazev"))
                 .setColumnName("Nazev")
                 .setColumnClass(String.class);
@@ -1956,7 +1955,7 @@ public class Application extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Alen Takoka
+    // Generated using JFormDesigner Evaluation license - Lajdak Ani nevim kde
     private JTabbedPane tabbedPane1;
     private JPanel dashboardMapPanel;
     private JPanel stityPanel;
